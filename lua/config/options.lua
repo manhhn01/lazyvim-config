@@ -41,9 +41,13 @@ opt.listchars:append("lead: ")
 opt.pumblend = 0
 
 if vim.g.neovide then
-  vim.o.guifont = "JetBrainsMonoNL Nerd Font:h14"
+  vim.o.guifont = "VictorMono Nerd Font:h14"
   vim.g.neovide_input_use_logo = true
   vim.g.neovide_input_macos_alt_is_meta = true
+  vim.g.neovide_window_blurred = true
+  -- vim.g.neovide_floating_blur_amount_x = 0.5
+  -- vim.g.neovide_floating_blur_amount_y = 0.5
+  vim.g.neovide_transparency = 0.5
   vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })

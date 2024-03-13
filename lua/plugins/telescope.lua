@@ -3,6 +3,7 @@ local Util = require("lazyvim.util")
 return {
   {
     "nvim-telescope/telescope.nvim",
+    event = "VimEnter",
     dependencies = {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",

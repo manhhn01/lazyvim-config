@@ -23,6 +23,10 @@ local unmap = function(mode, key)
   vim.keymap.del(modes, key)
 end
 
+-- Select all text in the buffer
+map("n", "<C-a>", "ggVG", { desc = "Select all" })
+map("n", "<D-a>", "ggVG", { desc = "Select all" })
+
 -- Move to window using the s + hjkl keys
 map("n", "sh", "<C-w>h", { desc = "Go to left window" })
 map("n", "sj", "<C-w>j", { desc = "Go to lower window" })
@@ -76,7 +80,12 @@ unmap("n", "<leader>ft")
 unmap("n", "<leader>fT")
 
 -- terminal Mappings
-map("t", "<C-[", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
+local lazyterm = function()
+  Util.terminal(nil, { cwd = Util.root(), border = "rounded" })
+end
+
+map("t", "<C-[>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
+map("n", "<c-/>", lazyterm, { desc = "Terminal (root dir)" })
 
 -- windows
 map("n", "ss", "<C-W>s", { desc = "Split window below" })
@@ -91,7 +100,7 @@ map("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 -- lsp
 map("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Code Action" })
 map("n", "L", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
-map("n", "<leader>rn", "<leader>cr", { desc = "Rename" })
+map("n", "<leader>rn", "<leader>cr", { desc = "Rename", remap = true })
 
 -- neo-tree
 map("n", "se", function()

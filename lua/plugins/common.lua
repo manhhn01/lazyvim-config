@@ -76,8 +76,8 @@ return {
           cmdline = { title = " Commands ", pattern = "^:", icon = " ", lang = "vim" },
           lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = " ", lang = "lua" },
           help = { pattern = "^:%s*he?l?p?%s+", icon = " " },
-          search_down = { kind = "search", pattern = "^/", icon = "  ", lang = "regex" },
-          search_up = { kind = "search", pattern = "^%?", icon = "  ", lang = "regex" },
+          search_down = { kind = "search", pattern = "^/", icon = "  ", lang = "regex" },
+          search_up = { kind = "search", pattern = "^%?", icon = "  ", lang = "regex" },
         },
       },
       lsp = {
@@ -188,29 +188,86 @@ return {
     end,
   },
 
-  {
+  -- {
+  --
+  --   "stevearc/dressing.nvim",
+  --   opts = {
+  --     select = {
+  --       get_config = function(opts)
+  --         if opts.kind == "codeaction" then
+  --           return {
+  --             backend = "builtin",
+  --             builtin = {
+  --               show_numbers = true,
+  --               relative = "cursor",
+  --               max_width = 50,
+  --               min_heitght = 1,
+  --             },
+  --             mappings = {
+  --               ["<Esc>"] = "Close",
+  --               ["<C-c>"] = "Close",
+  --               ["q"] = { "Close", nowait = true },
+  --               ["<CR>"] = "Confirm",
+  --             },
+  --           }
+  --         end
+  --       end,
+  --     },
+  --   },
+  -- },
 
-    "stevearc/dressing.nvim",
+  {
+    "b0o/incline.nvim",
+    event = "BufReadPost",
     opts = {
-      select = {
-        get_config = function(opts)
-          if opts.kind == "codeaction" then
-            return {
-              backend = "builtin",
-              builtin = {
-                show_numbers = true,
-                relative = "cursor",
-                max_width = 50,
-              },
-              mappings = {
-                ["<Esc>"] = "Close",
-                ["<C-c>"] = "Close",
-                ["<CR>"] = "Confirm",
-              },
-            }
-          end
+      highlight = {
+        groups = {
+          InclineNormal = {
+            default = true,
+            group = "TelescopePreviewTitle",
+          },
+          InclineNormalNC = {
+            default = true,
+            group = "TelescopePromptTitle",
+          },
+        },
+      },
+      hide = {
+        cursorline = true,
+      },
+    },
+    config = function(_, opts)
+      require("incline").setup(opts)
+    end,
+  },
+
+  {
+    "VidocqH/lsp-lens.nvim",
+    event = "VeryLazy",
+    opts = {
+      sections = {
+        definition = false,
+        references = function(count)
+          return count .. " references"
+        end,
+        implements = function(count)
+          return count .. " implements"
         end,
       },
     },
+    config = function(_, opts)
+      require("lsp-lens").setup(opts)
+    end,
+  },
+
+  {
+    "kevinhwang91/nvim-hlslens",
+    event = "BufReadPost",
+    opts = {
+      nearest_only = true,
+    },
+    config = function(_, opts)
+      require("hlslens").setup(opts)
+    end,
   },
 }
