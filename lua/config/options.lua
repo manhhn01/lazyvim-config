@@ -21,7 +21,6 @@ opt.autowrite = false -- Auto write
 opt.scrolloff = 5 -- Lines of context
 
 opt.undofile = true
-opt.undodir = vim.fn.expand("~") .. "/.vim/undodir"
 
 opt.showbreak = "↪"
 opt.wrap = true -- Wrap lines
@@ -63,3 +62,17 @@ if vim.g.neovide then
 else
   vim.g.transparent = os.getenv("NO_TRANSPARENT") ~= "TRUE" or false
 end
+
+local BACKUPDIR = vim.fn.expand("~") .. "/.vim/backup"
+local UNDODIR = vim.fn.expand("~") .. "/.vim/undo"
+
+if vim.fn.isdirectory(BACKUPDIR) == 0 then
+  vim.fn.mkdir(BACKUPDIR, "p", "0o700")
+end
+
+if vim.fn.isdirectory(UNDODIR) == 0 then
+  vim.fn.mkdir(UNDODIR, "p", "0o700")
+end
+
+opt.backupdir = BACKUPDIR
+opt.undodir = UNDODIR

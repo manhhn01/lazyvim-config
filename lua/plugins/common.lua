@@ -288,7 +288,8 @@ return {
 
         return {
           guibg = "#1e1e2e",
-          ft_icon and { " ", ft_icon, "  ", guibg = ft_color, guifg = helpers.contrast_color(ft_color) } or "",
+          -- ft_icon and { " ", ft_icon, "  ", guibg = ft_color, guifg = helpers.contrast_color(ft_color) } or "",
+          ft_icon and { " ", ft_icon, " ", guifg = ft_color } or "",
           " ",
           shorten_path_styled,
           modified and " 󰙴" or "",
