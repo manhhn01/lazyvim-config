@@ -481,12 +481,6 @@ return {
   },
 
   {
-    "chaoren/vim-wordmotion",
-    event = "BufReadPost",
-    enabled = false,
-  },
-
-  {
     "vyfor/cord.nvim",
     build = "./build",
     event = "VeryLazy",
