@@ -388,11 +388,10 @@ return {
         desc = "Hop previous character",
         remap = true,
       },
-      -- Conflict key map?
       {
         "t",
         function()
-          require("hop").hint_char2({
+          require("hop").hint_char1({
             direction = require("hop.hint").HintDirection.AFTER_CURSOR,
             current_line_only = true,
           })
@@ -404,7 +403,7 @@ return {
       {
         "T",
         function()
-          require("hop").hint_char2({
+          require("hop").hint_char1({
             direction = require("hop.hint").HintDirection.BEFORE_CURSOR,
             current_line_only = true,
           })
