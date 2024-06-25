@@ -14,8 +14,13 @@ return {
     "neovim/nvim-lspconfig",
     version = "*",
     opts = {
+      diagnostics = {
+        float = {
+          border = vim.g.transparent and "rounded" or nil,
+        },
+      },
       inlay_hints = {
-        enabled = true,
+        enabled = false,
       },
       servers = {
         eslint = {

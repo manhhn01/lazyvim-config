@@ -193,13 +193,17 @@ return {
           lualine_x = {
           -- stylua: ignore
           {
+            --- @diagnostic disable-next-line: undefined-field
             function() return require("noice").api.status.command.get() end,
+            --- @diagnostic disable-next-line: undefined-field
             cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
             color = Util.ui.fg("Statement"),
           },
           -- stylua: ignore
           {
+            --- @diagnostic disable-next-line: undefined-field
             function() return require("noice").api.status.mode.get() end,
+            --- @diagnostic disable-next-line: undefined-field
             cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
             color = Util.ui.fg("Constant"),
           },
@@ -434,9 +438,9 @@ return {
   -- disable default <tab> and <s-tab> behavior in LuaSnip
   {
     "L3MON4D3/LuaSnip",
-    keys = function()
-      return {}
-    end,
+    -- keys = function()
+    --   return {}
+    -- end,
   },
 
   -- TODO: Improve the config of visual multi
@@ -594,13 +598,33 @@ return {
     "m4xshen/hardtime.nvim",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     opts = {
-      disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason", "oil", "copilot-chat", "spectre_panel" },
+      disabled_filetypes = {
+        "qf",
+        "netrw",
+        "NvimTree",
+        "lazy",
+        "mason",
+        "oil",
+        "copilot-chat",
+        "spectre_panel",
+        "neo-tree",
+      },
     },
     command = "Hardtime",
-    event = "VeryLazy",
+    lazy = false,
     keys = {
       { "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"' },
       { "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"' },
+    },
+  },
+
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    event = "VeryLazy",
+    opts = {
+      open_mapping = [[<C-t>]],
+      shell = "/usr/local/bin/fish",
     },
   },
 }
