@@ -101,7 +101,6 @@ return {
         which_key = true,
         colorful_winsep = {
           enabled = false,
-          -- color = "#48548a",
         },
       },
     },
