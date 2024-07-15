@@ -68,7 +68,7 @@ end, { desc = "Format" })
 -- Remove floating terminal mappings
 unmap("n", "<leader>ft")
 unmap("n", "<leader>fT")
-unmap("n", "<C-/>")
+-- unmap("n", "<C-/>")
 
 -- terminal Mappings
 -- local lazyterm = function()
@@ -83,9 +83,9 @@ map("n", "ss", "<C-W>s", { desc = "Split window below" })
 map("n", "sv", "<C-W>v", { desc = "Split window right" })
 
 -- tabs
-map("n", "<leader>tl", "<cmd>tablast<cr>", { desc = "Last Tab" })
-map("n", "<leader>tf", "<cmd>tabfirst<cr>", { desc = "First Tab" })
-map("n", "<leader>tt", "<cmd>tabnew<cr>", { desc = "New Tab" })
+-- map("n", "<leader>tl", "<cmd>tablast<cr>", { desc = "Last Tab" })
+-- map("n", "<leader>tf", "<cmd>tabfirst<cr>", { desc = "First Tab" })
+-- map("n", "<leader>tt", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 
 -- lsp
