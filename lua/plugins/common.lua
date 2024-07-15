@@ -161,6 +161,7 @@ return {
     opts = function()
       local icons = require("lazyvim.config").icons
       local Util = require("lazyvim.util")
+      local wpm = require("wpm")
 
       vim.o.laststatus = vim.g.lualine_laststatus
 
@@ -238,13 +239,12 @@ return {
             },
           },
           lualine_y = {
-            { "progress", separator = " ", padding = { left = 1, right = 0 } },
-            { "location", padding = { left = 0, right = 1 } },
+            wpm.wpm,
+            wpm.historic_graph,
           },
           lualine_z = {
-            -- function()
-            --   return " " .. os.date("%R")
-            -- end,
+            { "progress", separator = " ", padding = { left = 1, right = 0 } },
+            { "location", padding = { left = 0, right = 1 } },
           },
         },
         extensions = { "neo-tree", "lazy" },
@@ -349,8 +349,8 @@ return {
     event = "WinNew",
     opts = {
       highlight = {
-        -- bg = "#16161E",
-        -- fg = "#48548a",
+        bg = vim.g.transparent and "NONE" or nil,
+        fg = vim.g.transparent and "#48548a" or nil,
       },
       interval = 45,
       no_exec_files = { "packer", "TelescopePrompt", "mason", "CompetiTest", "NvimTree", "neo-tree" },
@@ -433,14 +433,6 @@ return {
         teasing = false,
       })
     end,
-  },
-
-  -- disable default <tab> and <s-tab> behavior in LuaSnip
-  {
-    "L3MON4D3/LuaSnip",
-    -- keys = function()
-    --   return {}
-    -- end,
   },
 
   -- TODO: Improve the config of visual multi
@@ -595,36 +587,48 @@ return {
   },
 
   {
-    "m4xshen/hardtime.nvim",
-    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    opts = {
-      disabled_filetypes = {
-        "qf",
-        "netrw",
-        "NvimTree",
-        "lazy",
-        "mason",
-        "oil",
-        "copilot-chat",
-        "spectre_panel",
-        "neo-tree",
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    event = "VeryLazy",
+    keys = {
+      {
+        "<C-t>",
+        function()
+          vim.cmd([[ ToggleTerm direction=horizontal name=' Term ' ]])
+        end,
+        mode = { "n", "x", "t", "i" },
+      },
+      {
+        "<C-/>",
+        function()
+          vim.cmd([[ ToggleTerm size=40 direction=float name=' Float Term ' ]])
+        end,
       },
     },
-    command = "Hardtime",
-    lazy = false,
-    keys = {
-      { "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"' },
-      { "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"' },
+    opts = {
+      open_mapping = nil,
+      shell = "/usr/local/bin/fish",
+      float_opts = {
+        title_pos = "center",
+        border = "rounded",
+      },
+      highlights = {
+        FloatBorder = {
+          link = "FloatBorder",
+        },
+      },
+      winbar = {
+        enabled = true,
+        name_formatter = function(term) --  term: Terminal
+          return term.name
+        end,
+      },
     },
   },
 
   {
-    "akinsho/toggleterm.nvim",
-    version = "*",
-    event = "VeryLazy",
-    opts = {
-      open_mapping = [[<C-t>]],
-      shell = "/usr/local/bin/fish",
-    },
+    "jcdickinson/wpm.nvim",
+    event = "BufEnter",
+    config = true,
   },
 }
