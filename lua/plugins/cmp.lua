@@ -14,21 +14,23 @@ return {
         format = function(entry, item)
           -- local icons = require("lazyvim.config").icons.kinds
           local icons = kind.vscode_kind
-          if icons[item.kind] then
-            item.kind = icons[item.kind] .. kind.kind_abbrev[item.kind] or item.kind
-          end
 
-          if entry.completion_item.detail ~= nil and entry.completion_item.detail ~= "" then
-            item.menu_hl_group = "CurSearch"
-            if #entry.completion_item.detail > 10 then
-              item.menu = " " .. entry.completion_item.detail:sub(1, 10 - 1) .. "…"
-            else
-              item.menu = " " .. entry.completion_item.detail
+          local is_color = item.kind == "Color"
+
+          if is_color then
+            local formatterd_item = require("tailwindcss-colorizer-cmp").formatter(entry, item)
+
+            if formatterd_item.kind == "XX" then
+              item.kind = formatterd_item.kind
             end
+          else
+            item.kind = (icons[item.kind] or "   ") .. kind.kind_abbrev[item.kind] or item.kind
           end
 
-          if #item.abbr > 15 then
-            item.abbr = item.abbr:sub(1, 15 - 1) .. "…"
+          item.menu_hl_group = "Comment"
+
+          if #item.abbr > 20 then
+            item.abbr = item.abbr:sub(1, 20 - 1) .. "…   "
           end
 
           return item
@@ -43,6 +45,18 @@ return {
           winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
         }),
       } or nil,
+
+      sources = cmp.config.sources({
+        {
+          name = "nvim_lsp",
+          entry_filter = function(entry)
+            return kind.vscode_kind.Snippet ~= entry:get_kind() -- hide snippets
+          end,
+        },
+        { name = "path" },
+      }, {
+        { name = "buffer" },
+      }),
 
       mapping = cmp.mapping.preset.insert({
         ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
