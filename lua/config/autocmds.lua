@@ -20,9 +20,10 @@ vim.api.nvim_create_autocmd("FileType", {
 -- wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("no_wrap_spell"),
-  pattern = { "TelescopePrompt", "dashboard", "neo-tree", "lazy", "spectre_panel" },
+  pattern = { "TelescopePrompt", "dashboard", "neo-tree", "lazy", "spectre_panel", "neotest-summary" },
   callback = function()
     vim.opt_local.spell = false
+    vim.opt.wrap = false
   end,
 })
 
