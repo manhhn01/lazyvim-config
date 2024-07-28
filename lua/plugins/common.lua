@@ -280,7 +280,13 @@ return {
           filename = "[No Name]"
         end
 
-        local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
+        local icon, hl = MiniIcons.get("file", filename)
+        local hl_info = vim.api.nvim_get_hl(0, {
+          name = hl,
+        })
+
+        local bg_color = hl_info.bg and string.format("#%06X", hl_info.bg) or ""
+        local fg_color = hl_info.fg and string.format("#%06X", hl_info.fg) or ""
 
         -- See: https://github.com/b0o/incline.nvim/issues/41
         local shorten_path_styled = require("utils.utils").shorten_path_styled(vim.api.nvim_buf_get_name(props.buf), {
@@ -293,10 +299,10 @@ return {
         return {
           guibg = "#1e1e2e",
           not vim.g.transparent
-              and ft_icon
-              and { " ", ft_icon, "  ", guibg = ft_color, guifg = helpers.contrast_color(ft_color) }
+              and icon
+              and { " ", icon, "  ", guibg = bg_color, guifg = helpers.contrast_color(bg_color) }
             or "",
-          vim.g.transparent and ft_icon and { " ", ft_icon, " ", guifg = ft_color } or "",
+          vim.g.transparent and icon and { " ", icon, " ", guifg = fg_color } or "",
           " ",
           shorten_path_styled,
           modified and " 󰙴 " or "",
