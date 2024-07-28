@@ -131,7 +131,7 @@ map("i", "<C-h>", "<Left>", { desc = "Move left" })
 map("i", "<C-l>", "<Right>", { desc = "Move right" })
 
 -- replace to black hole register
-map("x", "<leader>p", '"_dP', { desc = "Delete to black hole register" })
+map("x", "<leader>P", '"_dP', { desc = "Delete to black hole register" })
 
 -- some abbreviations for common typos
 vim.cmd("cnoreabbrev W! w!")
