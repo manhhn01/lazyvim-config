@@ -26,6 +26,8 @@ M.vscode_kind = {
   Event = "  ",
   Operator = "  ",
   TypeParameter = "  ",
+  Copilot = "  ",
+  Codeium = "  ",
 }
 
 M.kind_abbrev = {
@@ -54,6 +56,8 @@ M.kind_abbrev = {
   Event = "Evt",
   Operator = "Opr",
   TypeParameter = "Type",
+  Copilot = "AI",
+  Codeium = "AI",
 }
 
 return M

@@ -35,6 +35,10 @@ return {
             sp = colors.green,
             style = { "undercurl" },
           },
+
+          CmpItemKindCodeium = {
+            fg = colors.lavender,
+          },
         }
 
         if vim.g.transparent then

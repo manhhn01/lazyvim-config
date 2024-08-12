@@ -19,7 +19,7 @@ return {
 
   {
     "zbirenbaum/copilot.lua",
-    enabled = true,
+    enabled = false,
     event = "VeryLazy",
     opts = {
       panel = {
@@ -255,6 +255,12 @@ return {
   {
     "b0o/incline.nvim",
     event = "BufReadPost",
+    dependencies = {
+      {
+        "echasnovski/mini.icons",
+      },
+    },
+
     opts = {
       highlight = {
         groups = {
@@ -285,8 +291,8 @@ return {
           name = hl,
         })
 
-        local bg_color = hl_info.bg and string.format("#%06X", hl_info.bg) or ""
-        local fg_color = hl_info.fg and string.format("#%06X", hl_info.fg) or ""
+        local bg_color = hl_info.bg and string.format("#%06X", hl_info.bg)
+        local fg_color = hl_info.fg and string.format("#%06X", hl_info.fg)
 
         -- See: https://github.com/b0o/incline.nvim/issues/41
         local shorten_path_styled = require("utils.utils").shorten_path_styled(vim.api.nvim_buf_get_name(props.buf), {
@@ -300,9 +306,10 @@ return {
           guibg = "#1e1e2e",
           not vim.g.transparent
               and icon
+              and bg_color
               and { " ", icon, "  ", guibg = bg_color, guifg = helpers.contrast_color(bg_color) }
             or "",
-          vim.g.transparent and icon and { " ", icon, " ", guifg = fg_color } or "",
+          vim.g.transparent and icon and fg_color and { " ", icon, " ", guifg = fg_color } or "",
           " ",
           shorten_path_styled,
           modified and " 󰙴 " or "",
