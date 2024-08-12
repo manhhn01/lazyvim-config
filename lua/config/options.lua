@@ -21,6 +21,7 @@ opt.autowrite = false -- Auto write
 opt.scrolloff = 5 -- Lines of context
 
 opt.undofile = true
+opt.backup = true
 
 opt.showbreak = "↪"
 opt.wrap = true -- Wrap lines
@@ -66,7 +67,7 @@ if vim.g.neovide then
   vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
-  vim.g.neovide_floating_shadow = true
+  vim.g.neovide_floating_shadow = false
 
   vim.g.neovide_text_gamma = 0.8
   vim.g.neovide_text_contrast = 0.2
@@ -74,6 +75,8 @@ if vim.g.neovide then
   vim.g.transparent = false
 else
   vim.g.transparent = os.getenv("NO_TRANSPARENT") ~= "TRUE" or false
+
+  opt.guicursor = "i:ver1,a:blinkon3" -- blinking cursor
 end
 
 local BACKUPDIR = vim.fn.expand("~") .. "/.vim/backup"

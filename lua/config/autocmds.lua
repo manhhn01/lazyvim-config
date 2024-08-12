@@ -29,7 +29,11 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   callback = function()
+    -- local extension = "~" .. vim.fn.strftime("%Y-%m-%d-%H%M%S") .. "_" .. vim.fn.getcwd()
     local extension = "~" .. vim.fn.strftime("%Y-%m-%d-%H%M%S")
+    local backupdir = vim.fn.expand("~") .. "/.vim/backup/"
+
     vim.o.backupext = extension
+    vim.o.backupdir = backupdir .. vim.fn.getcwd()
   end,
 })
