@@ -2,16 +2,11 @@ return {
   {
     "echasnovski/mini.surround",
     opts = {
+      search_method = "nearest",
       mappings = {
         add = "S",
         delete = "ds",
         replace = "cs",
-
-        -- default
-        -- find = "gsf",
-        -- find_left = "gsF",
-        -- highlight = "gsh",
-        -- update_n_lines = "gsn",
       },
     },
     n_lines = 100,
@@ -67,181 +62,8 @@ return {
   },
 
   {
-    "folke/noice.nvim",
-    opts = function(_, opts)
-      vim.list_extend(opts.routes, {
-        {
-          filter = {
-            event = "msg_show",
-            any = {
-              { find = "%d+ lines yanked" },
-            },
-          },
-          view = "mini",
-        },
-
-        -- skip notify
-        {
-          filter = {
-            event = "notify",
-            any = {
-              { find = "Cannot find provider for the feature" },
-            },
-          },
-          opts = {
-            skip = true,
-          },
-        },
-        {
-          filter = {
-            event = "msg_show",
-            any = {
-              { find = "Pick window:%s*" },
-              { find = "tsserver" },
-            },
-          },
-          opts = {
-            skip = true,
-          },
-        },
-        {
-          filter = {
-            event = "notify",
-            any = {
-              { find = "tsserver" },
-              { find = "No information available" },
-            },
-          },
-          opts = {
-            skip = true,
-          },
-        },
-        {
-          filter = {
-            event = "lsp",
-            any = {
-              { find = "Inlay Hints request failed" },
-            },
-          },
-          opts = {
-            skip = true,
-          },
-        },
-      })
-
-      return vim.tbl_deep_extend("force", opts, {
-        cmdline = {
-          format = {
-            cmdline = { title = " Commands ", pattern = "^:", icon = " ", lang = "vim" },
-            lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = " ", lang = "lua" },
-            help = { pattern = "^:%s*he?l?p?%s+", icon = " " },
-            search_down = { kind = "search", pattern = "^/", icon = "  ", lang = "regex" },
-            search_up = { kind = "search", pattern = "^%?", icon = "  ", lang = "regex" },
-          },
-        },
-        lsp = {
-          hover = {
-            silent = true,
-          },
-        },
-        presets = {
-          lsp_doc_border = vim.g.transparent or false,
-        },
-      })
-    end,
-  },
-
-  {
     "wakatime/vim-wakatime",
     event = "VeryLazy",
-  },
-
-  {
-    "nvim-lualine/lualine.nvim",
-    opts = function(_, opts)
-      vim.o.laststatus = vim.g.lualine_laststatus
-
-      return {
-        options = {
-          theme = "auto",
-          globalstatus = true,
-          disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
-          component_separators = "|",
-          section_separators = { left = "", right = "" },
-        },
-        sections = vim.tbl_deep_extend("force", opts.sections, {
-          lualine_z = {
-            { "progress", separator = " ", padding = { left = 1, right = 0 } },
-            { "location", padding = { left = 0, right = 1 } },
-          },
-        })
-      }
-    end,
-  },
-
-  {
-    "b0o/incline.nvim",
-    event = "BufReadPost",
-    dependencies = {
-      {
-        "echasnovski/mini.icons",
-      },
-    },
-
-    opts = {
-      highlight = {
-        groups = {
-          InclineNormal = {
-            default = true,
-            group = "TelescopePreviewLink",
-          },
-          InclineNormalNC = {
-            default = true,
-            group = "Comment",
-          },
-        },
-      },
-      hide = {
-        cursorline = true,
-      },
-      render = function(props)
-        local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
-        local modified = vim.bo[props.buf].modified
-
-        if filename == "" then
-          filename = "[No Name]"
-        end
-
-        local icon, hl = MiniIcons.get("file", filename)
-        local hl_info = vim.api.nvim_get_hl(0, {
-          name = hl,
-        })
-
-        local bg_color = hl_info.bg and string.format("#%06X", hl_info.bg)
-        local fg_color = hl_info.fg and string.format("#%06X", hl_info.fg)
-
-        -- See: https://github.com/b0o/incline.nvim/issues/41
-        local shorten_path_styled = require("utils.utils").shorten_path_styled(vim.api.nvim_buf_get_name(props.buf), {
-          short_len = 1,
-          tail_count = 2,
-          head_max = 4,
-          head_style = { group = "Comment" },
-        })
-
-        return {
-          guibg = "#1e1e2e",
-          (not vim.g.transparent) and icon and fg_color and { " ", icon, "  ", guibg = bg_color, guifg = fg_color } or "",
-          vim.g.transparent and icon and fg_color and { " ", icon, " ", guifg = fg_color } or "",
-          " ",
-          shorten_path_styled,
-          modified and " 󰙴 " or "",
-          " ",
-        }
-      end,
-    },
-    config = function(_, opts)
-      require("incline").setup(opts)
-    end,
   },
 
   {
@@ -279,67 +101,6 @@ return {
     },
   },
 
-  {
-    "smoka7/hop.nvim",
-    event = "BufReadPost",
-    keys = {
-      {
-        "f",
-        function()
-          require("hop").hint_char1({
-            direction = require("hop.hint").HintDirection.AFTER_CURSOR,
-            current_line_only = true,
-          })
-        end,
-        mode = { "n", "x" },
-        desc = "Hop next character",
-        remap = true,
-      },
-      {
-        "F",
-        function()
-          require("hop").hint_char1({
-            direction = require("hop.hint").HintDirection.BEFORE_CURSOR,
-            current_line_only = true,
-          })
-        end,
-        mode = { "n", "x" },
-        desc = "Hop previous character",
-        remap = true,
-      },
-      {
-        "t",
-        function()
-          require("hop").hint_char1({
-            direction = require("hop.hint").HintDirection.AFTER_CURSOR,
-            current_line_only = true,
-          })
-        end,
-        mode = { "n", "x" },
-        desc = "Hop till next characters",
-        remap = true,
-      },
-      {
-        "T",
-        function()
-          require("hop").hint_char1({
-            direction = require("hop.hint").HintDirection.BEFORE_CURSOR,
-            current_line_only = true,
-          })
-        end,
-        mode = { "n", "x" },
-        desc = "Hop till previous characters",
-        remap = true,
-      },
-    },
-    config = function()
-      require("hop").setup({
-        keys = "asdghklqwertyuiopzxcvbnmfj123",
-        teasing = false,
-      })
-    end,
-  },
-
   -- TODO: Improve the config of visual multi
   {
     "mg979/vim-visual-multi",
@@ -354,57 +115,29 @@ return {
   },
 
   {
-    "abecodes/tabout.nvim",
-    event = "InsertEnter",
-    opts = {
-      tabkey = "<Tab>",
-      backwards_tabkey = "", -- key to trigger backwards tabout, set to an empty string to disable
-      act_as_tab = true, -- shift content if tab out is not possible
-      act_as_shift_tab = true, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
-      -- default_tab = "<C-t>", -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
-      -- default_shift_tab = "<C-d>", -- reverse shift default action,
-      enable_backwards = false,
-      completion = false, -- if the tabkey is used in a completion pum
-      tabouts = {
-        { open = "'", close = "'" },
-        { open = '"', close = '"' },
-        { open = "`", close = "`" },
-        { open = "(", close = ")" },
-        { open = "[", close = "]" },
-        { open = "{", close = "}" },
-      },
-      ignore_beginning = true,
-      exclude = {},
-    },
-    config = function(_, opts)
-      require("tabout").setup(opts)
-    end,
-  },
-
-  {
     "vyfor/cord.nvim",
     build = "./build",
     event = "VeryLazy",
     opts = {
-      usercmds = true, -- Enable user commands
+      usercmds = true,
       log_level = "warn",
 
       timer = {
-        enable = true, -- Enable automatically updating presence
+        enable = true,
         interval = 5000,
-        reset_on_idle = false, -- Reset start timestamp on idle
-        reset_on_change = false, -- Reset start timestamp on presence change
+        reset_on_idle = false,
+        reset_on_change = false,
       },
       editor = {
-        image = nil, -- Image ID or URL in case a custom client id is provided
-        client = "neovim", -- vim, neovim, lunarvim, nvchad, astronvim or your application's client id
-        tooltip = "hyperextensible Vim-based text editor ", -- Text to display when hovering over the editor's image
+        image = nil,
+        client = "neovim",
+        tooltip = "hyperextensible Vim-based text editor ",
       },
       display = {
-        show_time = true, -- Display start timestamp
-        show_repository = true, -- Display 'View repository' button linked to repository url, if any
-        show_cursor_position = true, -- Display line and column number of cursor's position
-        swap_fields = false, -- If enabled, workspace is displayed first
+        show_time = true,
+        show_repository = true,
+        show_cursor_position = true,
+        swap_fields = false,
         workspace_blacklist = { "private" }, -- List of workspace names to hide
       },
       lsp = {
@@ -415,18 +148,18 @@ return {
       idle = {
         enable = true, -- Enable idle status
         show_status = true, -- Display idle status, disable to hide the rich presence on idle
-        timeout = 1800000, -- Timeout in milliseconds after which the idle status is set, 0 to display immediately
-        disable_on_focus = true, -- Do not display idle status when neovim is focused
-        text = "Idle", -- Text to display when idle
-        tooltip = "💤", -- Text to display when hovering over the idle image
+        timeout = 1800000,
+        disable_on_focus = true,
+        text = "Idle",
+        tooltip = "💤",
       },
       text = {
         viewing = "Viewing {}", -- Text to display when viewing a readonly file
         editing = "Editing {}", -- Text to display when editing a file
-        file_browser = "Browsing files in {}", -- Text to display when browsing files (Empty string to disable)
-        plugin_manager = "Managing plugins in {}", -- Text to display when managing plugins (Empty string to disable)
-        lsp_manager = "Configuring LSP in {}", -- Text to display when managing LSP servers (Empty string to disable)
-        workspace = "In a workspace", -- Text to display when in a workspace (Empty string to disable)
+        file_browser = "Browsing files in {}",
+        plugin_manager = "Managing plugins in {}", -- Text to display when managing plugins
+        lsp_manager = "",
+        workspace = "In a workspace",
       },
       buttons = {
         {
@@ -434,17 +167,9 @@ return {
           url = "https://www.youtube.com/watch?v=iik25wqIuFo", -- URL where the button leads to ('git' = automatically fetch Git repository URL)
         },
       },
-      assets = { -- Custom file icons
-        -- lazy = {                                 -- Vim filetype or file name or file extension = table or string (see wiki)*
-        --   name = 'Lazy',                         -- Optional override for the icon name, redundant for language types
-        --   icon = 'https://example.com/lazy.png', -- Rich Presence asset name or URL
-        --   tooltip = 'lazy.nvim',                 -- Text to display when hovering over the icon
-        --   type = 2,                              -- 0 = language, 1 = file browser, 2 = plugin manager, 3 = lsp manager; defaults to language
-        -- },
-        -- ['Cargo.toml'] = 'crates',
-      },
     },
   },
+
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "LazyFile",
@@ -460,36 +185,10 @@ return {
     end,
   },
 
-  { "akinsho/git-conflict.nvim", version = "*", config = true },
-
-  {
-    "lukas-reineke/headlines.nvim",
-    enabled = false,
-    opts = {
-      markdown = {
-        fat_headline_upper_string = "▁",
-        fat_headline_lower_string = "▔", -- better font support
-      },
-    },
-  },
-
   {
     "rcarriga/nvim-notify",
     opts = {
       stages = "fade_in_slide_out",
-    },
-  },
-
-  {
-    "norcalli/nvim-colorizer.lua",
-    enabled = false,
-    event = "BufReadPost",
-    opts = {
-      ["*"] = {
-        css = true,
-        css_fn = true,
-        mode = "background",
-      },
     },
   },
 

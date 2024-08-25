@@ -6,6 +6,7 @@ local disabled = {
   "friendly-snippets",
   "nvim-snippets",
   "MeanderingProgrammer/markdown.nvim",
+  "lukas-reineke/headlines.nvim"
 }
 
 local mapped = {}

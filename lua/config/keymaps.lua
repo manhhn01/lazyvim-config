@@ -41,10 +41,6 @@ map("n", "<C-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width
 -- buffers
 map("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
-map("n", "<leader>bl", "<Cmd>BufferLineCloseRight<CR>", { desc = "Delete buffers to the right" })
-map("n", "<leader>bh", "<Cmd>BufferLineCloseLeft<CR>", { desc = "Delete buffers to the left" })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 unmap("n", "n")
@@ -65,24 +61,13 @@ end, { desc = "Format" })
 -- Remove floating terminal mappings
 unmap("n", "<leader>ft")
 unmap("n", "<leader>fT")
--- unmap("n", "<C-/>")
-
--- terminal Mappings
--- local lazyterm = function()
---   Util.terminal(nil, { cwd = Util.root(), border = "rounded" })
--- end
 
 map("t", "<C-[>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
--- map("n", "<c-/>", lazyterm, { desc = "Terminal (root dir)" })
 
 -- windows
 map("n", "ss", "<C-W>s", { desc = "Split window below" })
 map("n", "sv", "<C-W>v", { desc = "Split window right" })
 
--- tabs
--- map("n", "<leader>tl", "<cmd>tablast<cr>", { desc = "Last Tab" })
--- map("n", "<leader>tf", "<cmd>tabfirst<cr>", { desc = "First Tab" })
--- map("n", "<leader>tt", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 
 -- lsp
@@ -98,7 +83,6 @@ map("n", "sE", function()
 end, { desc = "Focus NeoTree(root dir)" })
 
 -- telescope
-map("n", "<leader>fa", "<leader>sa", { remap = true })
 map("n", "<leader>fd", "<leader>sd", { remap = true })
 map("n", "<leader>fw", "<leader>sg", { remap = true })
 map("n", "<leader>fW", "<leader>sG", { remap = true })
@@ -114,7 +98,6 @@ unmap("n", "<leader><space>")
 map("n", "<space><space>", function()
   require("gitsigns").preview_hunk()
 end)
-
 map("n", "<space>j", function()
   require("gitsigns").next_hunk()
 end)
@@ -123,12 +106,12 @@ map("n", "<space>k", function()
   require("gitsigns").prev_hunk()
 end)
 
--- quick move cursor
+-- quick move cursor in insert mode
 map("i", "<C-h>", "<Left>", { desc = "Move left" })
 map("i", "<C-l>", "<Right>", { desc = "Move right" })
 
 -- replace to black hole register
-map("x", "<leader>P", '"_dP', { desc = "Delete to black hole register" })
+map("x", "<leader>P", '"_dP', { desc = "Replace to black hole register" })
 
 -- some abbreviations for common typos
 vim.cmd("cnoreabbrev W! w!")
