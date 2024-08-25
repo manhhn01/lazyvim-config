@@ -4,8 +4,8 @@
 
 vim.g.mapleader = ";"
 
--- Enable LazyVim auto format
-vim.g.autoformat = true
+-- LazyVim auto format
+vim.g.autoformat = false
 
 -- LazyVim root dir detection
 -- Each entry can be:
@@ -74,7 +74,7 @@ if vim.g.neovide then
 
   vim.g.transparent = false
 else
-  vim.g.transparent = os.getenv("NO_TRANSPARENT") ~= "TRUE" or false
+  vim.g.transparent = os.getenv("TRANSPARENT") == "TRUE" or false
 
   opt.guicursor = "i:ver1,a:blinkon3" -- blinking cursor
 end
