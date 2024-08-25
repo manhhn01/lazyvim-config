@@ -158,11 +158,7 @@ return {
 
   {
     "nvim-lualine/lualine.nvim",
-    opts = function()
-      local icons = require("lazyvim.config").icons
-      local Util = require("lazyvim.util")
-      local wpm = require("wpm")
-
+    opts = function(_, opts)
       vim.o.laststatus = vim.g.lualine_laststatus
 
       return {
@@ -173,81 +169,12 @@ return {
           component_separators = "|",
           section_separators = { left = "", right = "" },
         },
-        sections = {
-          lualine_a = { "mode" },
-          lualine_b = { "branch" },
-
-          lualine_c = {
-            Util.lualine.root_dir(),
-            {
-              "diagnostics",
-              symbols = {
-                error = icons.diagnostics.Error,
-                warn = icons.diagnostics.Warn,
-                info = icons.diagnostics.Info,
-                hint = icons.diagnostics.Hint,
-              },
-            },
-            { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-            { Util.lualine.pretty_path() },
-          },
-          lualine_x = {
-          -- stylua: ignore
-          {
-            --- @diagnostic disable-next-line: undefined-field
-            function() return require("noice").api.status.command.get() end,
-            --- @diagnostic disable-next-line: undefined-field
-            cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-            color = Util.ui.fg("Statement"),
-          },
-          -- stylua: ignore
-          {
-            --- @diagnostic disable-next-line: undefined-field
-            function() return require("noice").api.status.mode.get() end,
-            --- @diagnostic disable-next-line: undefined-field
-            cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-            color = Util.ui.fg("Constant"),
-          },
-          -- stylua: ignore
-          {
-            function() return "  " .. require("dap").status() end,
-            cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
-            color = Util.ui.fg("Debug"),
-          },
-            {
-              require("lazy.status").updates,
-              cond = require("lazy.status").has_updates,
-              color = Util.ui.fg("Special"),
-            },
-            {
-              "diff",
-              symbols = {
-                added = icons.git.added,
-                modified = icons.git.modified,
-                removed = icons.git.removed,
-              },
-              source = function()
-                local gitsigns = vim.b.gitsigns_status_dict
-                if gitsigns then
-                  return {
-                    added = gitsigns.added,
-                    modified = gitsigns.changed,
-                    removed = gitsigns.removed,
-                  }
-                end
-              end,
-            },
-          },
-          lualine_y = {
-            wpm.wpm,
-            wpm.historic_graph,
-          },
+        sections = vim.tbl_deep_extend("force", opts.sections, {
           lualine_z = {
             { "progress", separator = " ", padding = { left = 1, right = 0 } },
             { "location", padding = { left = 0, right = 1 } },
           },
-        },
-        extensions = { "neo-tree", "lazy" },
+        })
       }
     end,
   },
@@ -278,7 +205,6 @@ return {
         cursorline = true,
       },
       render = function(props)
-        local helpers = require("incline.helpers")
         local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
         local modified = vim.bo[props.buf].modified
 
@@ -304,11 +230,7 @@ return {
 
         return {
           guibg = "#1e1e2e",
-          not vim.g.transparent
-              and icon
-              and bg_color
-              and { " ", icon, "  ", guibg = bg_color, guifg = helpers.contrast_color(bg_color) }
-            or "",
+          (not vim.g.transparent) and icon and fg_color and { " ", icon, "  ", guibg = bg_color, guifg = fg_color } or "",
           vim.g.transparent and icon and fg_color and { " ", icon, " ", guifg = fg_color } or "",
           " ",
           shorten_path_styled,
@@ -355,36 +277,6 @@ return {
       diagnostics_warn_symbol = "!",
       diagnostics_hint_symbol = "i",
     },
-  },
-
-  {
-    "nvim-zh/colorful-winsep.nvim",
-    event = "WinNew",
-    opts = {
-      highlight = {
-        bg = vim.g.transparent and "NONE" or nil,
-        fg = vim.g.transparent and "#48548a" or nil,
-      },
-      interval = 45,
-      no_exec_files = { "packer", "TelescopePrompt", "mason", "CompetiTest", "NvimTree", "neo-tree" },
-      symbols = { "─", "│", "┌", "┐", "└", "┘" },
-      close_event = function() end,
-      create_event = function()
-        local win_n = require("colorful-winsep.utils").calculate_number_windows()
-        if win_n == 2 then
-          local win_id = vim.fn.win_getid(vim.fn.winnr("h"))
-          local filetype = vim.api.nvim_get_option_value("filetype", {
-            buf = vim.api.nvim_win_get_buf(win_id),
-          })
-          if filetype == "neo-tree" then
-            require("colorful-winsep").NvimSeparatorDel()
-          end
-        end
-      end,
-    },
-    config = function(_, opts)
-      require("colorful-winsep").setup(opts)
-    end,
   },
 
   {
@@ -572,6 +464,7 @@ return {
 
   {
     "lukas-reineke/headlines.nvim",
+    enabled = false,
     opts = {
       markdown = {
         fat_headline_upper_string = "▁",
@@ -589,6 +482,7 @@ return {
 
   {
     "norcalli/nvim-colorizer.lua",
+    enabled = false,
     event = "BufReadPost",
     opts = {
       ["*"] = {
@@ -637,11 +531,5 @@ return {
         end,
       },
     },
-  },
-
-  {
-    "jcdickinson/wpm.nvim",
-    event = "BufEnter",
-    config = true,
   },
 }

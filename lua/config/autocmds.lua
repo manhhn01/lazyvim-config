@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("no_wrap_spell"),
-  pattern = { "TelescopePrompt", "dashboard", "neo-tree", "lazy", "spectre_panel", "neotest-summary" },
+  pattern = { "TelescopePrompt", "dashboard", "neo-tree", "lazy", "grug-far", "neotest-summary" },
   callback = function()
     vim.opt_local.spell = false
     vim.opt.wrap = false
@@ -29,7 +29,6 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   callback = function()
-    -- local extension = "~" .. vim.fn.strftime("%Y-%m-%d-%H%M%S") .. "_" .. vim.fn.getcwd()
     local extension = "~" .. vim.fn.strftime("%Y-%m-%d-%H%M%S")
     local backupdir = vim.fn.expand("~") .. "/.vim/backup/"
 

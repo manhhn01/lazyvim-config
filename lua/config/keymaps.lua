@@ -54,9 +54,6 @@ unmap("n", "N")
 unmap("x", "N")
 unmap("o", "N")
 
--- Remove lazy mapping
-unmap("n", "<leader>l")
-
 -- new file
 map("n", "<leader>n", "<cmd>enew<cr>", { desc = "New File" })
 

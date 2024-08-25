@@ -1,6 +1,19 @@
 local cmp = require("cmp")
 local kind = require("utils.kind")
 
+local function border(hl_name)
+  return {
+    { "╭", hl_name },
+    { "─", hl_name },
+    { "╮", hl_name },
+    { "│", hl_name },
+    { "╯", hl_name },
+    { "─", hl_name },
+    { "╰", hl_name },
+    { "│", hl_name },
+  }
+end
+
 return {
   {
     "hrsh7th/nvim-cmp",
@@ -51,14 +64,17 @@ return {
         end,
       },
 
-      window = vim.g.transparent and {
-        completion = cmp.config.window.bordered({
-          winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-        }),
+      window = {
+        completion = {
+          side_padding = 1,
+          winhighlight = "Normal:CmpPmenu,CursorLine:Visual,Search:None",
+          border = border("CmpBorder"),
+        },
         documentation = cmp.config.window.bordered({
           winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+          border = border("CmpDocBorder"),
         }),
-      } or nil,
+      },
 
       sources = cmp.config.sources({
         { name = "codeium", priority = 100 },

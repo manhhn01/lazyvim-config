@@ -7,6 +7,9 @@ return {
       transparent_background = vim.g.transparent or false,
       custom_highlights = function(colors)
         local custom_highlights = {
+          CmpBorder = { fg = colors.surface1 },
+          CmpDocBorder = { fg = colors.surface1 },
+
           IblScope = {
             fg = colors.surface2,
           },
@@ -19,6 +22,7 @@ return {
             fg = "#000000",
             bg = colors.blue,
           },
+
           SpellBad = {
             sp = colors.blue,
             style = { "undercurl" },
@@ -34,6 +38,10 @@ return {
           SpellCap = {
             sp = colors.green,
             style = { "undercurl" },
+          },
+
+          WinSeparator = {
+            fg = colors.surface0,
           },
 
           CmpItemKindCodeium = {
@@ -58,6 +66,7 @@ return {
             TreesitterContextLineNumber = {
               bg = colors.base,
             },
+
             TreesitterContextBottom = {
               style = {},
             },
