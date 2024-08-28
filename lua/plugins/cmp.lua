@@ -18,16 +18,7 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      {
-        "Exafunction/codeium.nvim",
-        cmd = "Codeium",
-        opts = {},
-        config = function()
-          require("codeium").setup({
-            enable_chat = true,
-          })
-        end,
-      },
+      { "Exafunction/codeium.nvim" },
     },
     opts = {
       experimental = {

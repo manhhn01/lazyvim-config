@@ -1,8 +1,5 @@
 return {
   {
-    "nvim-neotest/neotest-jest",
-  },
-  {
     "nvim-neotest/neotest",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
