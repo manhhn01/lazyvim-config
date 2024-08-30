@@ -23,7 +23,7 @@ local unmap = function(mode, key)
 end
 
 -- Select all text in the buffer
-map("n", "<C-a>", "ggVG", { desc = "Select all" })
+-- map("n", "<C-a>", "ggVG", { desc = "Select all" })
 map("n", "<D-a>", "ggVG", { desc = "Select all" })
 
 -- Move to window using the s + hjkl keys
