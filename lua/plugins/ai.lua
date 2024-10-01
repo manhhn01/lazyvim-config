@@ -67,18 +67,23 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
+    build = "make BUILD_FROM_SOURCE=true",
     opts = {
       provider = "openai",
       openai = {
         endpoint = "https://api.openai.com/v1",
         model = "gpt-4o-mini",
         timeout = 30000,
-        temperature = 0.2,
-        max_tokens = 4000,
+        temperature = 0.4,
+        max_tokens = 8000,
       },
       gemini = {
-        model = "gemini-1.5-flash",
-        options = {},
+        endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+        model = "gemini-1.5-flash-latest",
+        timeout = 30000,
+        temperature = 0.4,
+        max_tokens = 8000,
+        ["local"] = false,
       },
       mappings = {
         ask = "<leader>aa",
