@@ -58,7 +58,7 @@ vim.g.rustaceanvim = {
 }
 
 if vim.g.neovide then
-  vim.o.guifont = "VictorMono Nerd Font:h13:#e-subpixelantialias:#h-slight"
+  vim.o.guifont = "VictorMono Nerd Font:h15:w1:#e-subpixelantialias:#h-slight"
   vim.g.neovide_input_use_logo = true
   vim.g.neovide_input_macos_option_key_is_meta = "both"
   vim.g.neovide_window_blurred = false
@@ -76,7 +76,7 @@ if vim.g.neovide then
 else
   vim.g.transparent = os.getenv("TRANSPARENT") == "TRUE" or false
 
-  opt.guicursor = "i:ver1,a:blinkon3" -- blinking cursor
+  opt.guicursor = "i:ver1,c:ver1,a:blinkon4,a:blinkwait1" -- blinking cursor
 end
 
 local BACKUPDIR = vim.fn.expand("~") .. "/.vim/backup"
