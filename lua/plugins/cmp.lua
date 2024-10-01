@@ -68,12 +68,11 @@ return {
       },
 
       sources = cmp.config.sources({
-        { name = "codeium", priority = 100 },
-
+        { name = "codeium", priority = 100, },
         {
           name = "nvim_lsp",
           entry_filter = function(entry)
-            return kind.vscode_kind.Snippet ~= entry:get_kind() -- hide snippets
+            return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
           end,
         },
 
