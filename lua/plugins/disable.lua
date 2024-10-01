@@ -5,8 +5,6 @@ local disabled = {
   "L3MON4D3/LuaSnip",
   "friendly-snippets",
   "nvim-snippets",
-  "MeanderingProgrammer/markdown.nvim",
-  "lukas-reineke/headlines.nvim"
 }
 
 local mapped = {}
