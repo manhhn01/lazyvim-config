@@ -76,6 +76,9 @@ return {
           silent = true,
         },
       },
+      presets = {
+        bottom_search = false,
+      },
     })
   end,
 }
