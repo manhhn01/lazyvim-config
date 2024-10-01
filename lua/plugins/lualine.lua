@@ -12,8 +12,8 @@ return {
         section_separators = { left = "", right = "" },
       },
       sections = vim.tbl_deep_extend("force", opts.sections, {
+        lualine_y = {},
         lualine_z = {
-          { "progress", separator = " ", padding = { left = 1, right = 0 } },
           { "location", padding = { left = 0, right = 1 } },
         },
       }),
