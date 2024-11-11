@@ -39,21 +39,21 @@ return {
       local fg_color = hl_info.fg and string.format("#%06X", hl_info.fg)
 
       -- See: https://github.com/b0o/incline.nvim/issues/41
-      local shorten_path_styled = require("utils.utils").shorten_path_styled(vim.api.nvim_buf_get_name(props.buf), {
-        short_len = 1,
-        tail_count = 2,
-        head_max = 4,
-        head_style = { group = "Comment" },
-      })
+      local shorten_path_styled = filename == "[No Name]" and "[No Name]"
+        or require("utils.utils").shorten_path_styled(vim.api.nvim_buf_get_name(props.buf), {
+          short_len = 1,
+          tail_count = 2,
+          head_max = 4,
+          head_style = { group = "Comment" },
+        })
 
       return {
-        guibg = "#1e1e2e",
-        (not vim.g.transparent) and icon and fg_color and { " ", icon, "  ", guifg = fg_color } or "",
-        vim.g.transparent and icon and fg_color and { " ", icon, " ", guifg = fg_color } or "",
+        icon and fg_color and { " ", icon, " ", guifg = fg_color } or "",
         " ",
         shorten_path_styled,
         modified and " 󰙴 " or "",
         " ",
+        group = "InclineBg"
       }
     end,
   },

@@ -5,7 +5,24 @@ return {
     opts = {},
     config = function()
       require("codeium").setup({
-        enable_chat = false,
+        enable_chat = true,
+        enable_cmp_source = false,
+        virtual_text = {
+          enabled = true,
+          map_ktyes = true,
+          filetypes = {
+            TelescopePrompt = false,
+            codecompanion = false,
+          },
+          key_bindings = {
+            accept = "<C-u>",
+            accept_word = false,
+            accept_line = false,
+            next = "<M-]>",
+            prev = "<M-[>",
+            clear = "<C-]>",
+          },
+        },
       })
     end,
   },
@@ -61,6 +78,7 @@ return {
 
   {
     "yetone/avante.nvim",
+    enabled = false,
     event = "VeryLazy",
     dependencies = {
       "echasnovski/mini.icons",
@@ -117,5 +135,87 @@ return {
         },
       },
     },
+  },
+
+  {
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      { "MeanderingProgrammer/render-markdown.nvim" },
+    },
+    event = "VeryLazy",
+    opts = {
+      display = {
+        chat = {
+          window = {
+            layout = "vertical", -- float|vertical|horizontal|buffer
+            border = "single",
+            height = 0.8,
+            width = 0.35,
+            relative = "editor",
+            opts = {
+              breakindent = true,
+              cursorcolumn = false,
+              cursorline = true,
+              foldcolumn = "0",
+              linebreak = true,
+              list = false,
+              signcolumn = "no",
+              spell = false,
+              wrap = true,
+              number = false,
+              relativenumber = false,
+            },
+          },
+          intro_message = "✨ Press ? for options",
+          start_in_insert_mode = true,
+          render_headers = false,
+          ---@param adapter CodeCompanion.Adapter
+          token_count = function(tokens, adapter) -- The function to display the token count
+            return " " .. tokens .. " tokens"
+          end,
+        },
+      },
+      strategies = {
+        chat = {
+          adapter = "openai",
+        },
+        inline = {
+          adapter = "openai",
+        },
+      },
+      adapters = {
+        openai = function()
+          return require("codecompanion.adapters").extend("openai", {
+            schema = {
+              model = {
+                default = "gpt-4o-mini",
+              },
+            },
+          })
+        end,
+      },
+    },
+    keys = {
+      {
+        "<leader>aa",
+        function()
+          vim.cmd("CodeCompanionChat Toggle")
+        end,
+        mode = { "n", "x" },
+        desc = "Code companion chat",
+      },
+      {
+        "<leader>ac",
+        function()
+          vim.cmd("CodeCompanionAction")
+        end,
+        mode = { "n", "x" },
+        desc = "Code companion action",
+      },
+    },
+    config = function(_, opts)
+      require("codecompanion").setup(opts)
+    end,
   },
 }

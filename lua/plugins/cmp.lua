@@ -1,5 +1,6 @@
 local cmp = require("cmp")
 local kind = require("utils.kind")
+local api = vim.api
 
 local function border(hl_name)
   return {
@@ -14,6 +15,22 @@ local function border(hl_name)
   }
 end
 
+local function tailwind(entry, item)
+  local entryItem = entry:get_completion_item()
+  local color = entryItem.documentation
+
+  if color and type(color) == "string" and color:match("^#%x%x%x%x%x%x$") then
+    local hl = "hex-" .. color:sub(2)
+
+    if #api.nvim_get_hl(0, { name = hl }) == 0 then
+      api.nvim_set_hl(0, hl, { fg = color })
+    end
+
+    item.kind_hl_group = hl
+    item.menu_hl_group = hl
+  end
+end
+
 return {
   {
     "hrsh7th/nvim-cmp",
@@ -22,8 +39,8 @@ return {
     },
     opts = {
       experimental = {
-        -- ghost_text = false, -- this feature conflict with copilot.vim's preview.
-        ghost_text = true,
+        ghost_text = false, -- this feature conflict with copilot.vim's preview.
+        -- ghost_text = true,
       },
 
       formatting = {
@@ -35,14 +52,10 @@ return {
           local is_color = item.kind == "Color"
 
           if is_color then
-            local formatterd_item = require("tailwindcss-colorizer-cmp").formatter(entry, item)
-
-            if formatterd_item.kind == "XX" then
-              item.kind = formatterd_item.kind
-            end
-          else
-            item.kind = ((icons[item.kind] or "   ") .. (kind.kind_abbrev[item.kind] or "") or item.kind or "")
+            tailwind(entry, item)
           end
+
+          item.kind = ((icons[item.kind] or "   ") .. (kind.kind_abbrev[item.kind] or "") or item.kind or "")
 
           item.menu_hl_group = "Comment"
           item.menu = item.menu and item.menu:sub(1, 40) or ""
@@ -68,7 +81,6 @@ return {
       },
 
       sources = cmp.config.sources({
-        { name = "codeium", priority = 100, },
         {
           name = "nvim_lsp",
           entry_filter = function(entry)

@@ -42,6 +42,7 @@ map("n", "<C-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width
 map("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 
+
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 unmap("n", "n")
 unmap("x", "n")
@@ -65,6 +66,7 @@ unmap("n", "<leader>fT")
 map("t", "<C-[>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 
 -- windows
+map("n", "s", function() end, {})
 map("n", "ss", "<C-W>s", { desc = "Split window below" })
 map("n", "sv", "<C-W>v", { desc = "Split window right" })
 

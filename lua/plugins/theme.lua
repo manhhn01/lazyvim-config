@@ -10,6 +10,10 @@ return {
           CmpBorder = { fg = colors.surface1 },
           CmpDocBorder = { fg = colors.surface1 },
 
+          TreesitterContextBottom = {
+            style = {},
+          },
+
           IblScope = {
             fg = colors.surface2,
           },
@@ -27,14 +31,17 @@ return {
             sp = colors.blue,
             style = { "undercurl" },
           },
+
           SpellLocal = {
             sp = colors.text,
             style = { "undercurl" },
           },
+
           SpellRare = {
             sp = colors.green,
             style = { "undercurl" },
           },
+
           SpellCap = {
             sp = colors.green,
             style = { "undercurl" },
@@ -47,6 +54,19 @@ return {
           CmpItemKindCodeium = {
             fg = colors.lavender,
           },
+
+          ToggleTermNormalFloat = {
+            bg = colors.crustn,
+          },
+
+          ToggleTermNormalFloatBorder = {
+            bg = "NONE",
+            fg = colors.blue,
+          },
+
+          InclineBg = {
+            bg = colors.mantle,
+          }
         }
 
         if vim.g.transparent then
@@ -55,24 +75,21 @@ return {
             Clear = {
               bg = "NONE",
             },
+            TreesitterContextLineNumber = {
+              bg = "NONE",
+            },
+          })
+        else
+          vim.list_extend(custom_highlights, {
+            TreesitterContextLineNumber = {
+              bg = colors.mantle,
+            },
           })
         end
 
         return custom_highlights
       end,
-      highlight_overrides = {
-        all = function(colors)
-          return {
-            TreesitterContextLineNumber = {
-              bg = colors.base,
-            },
-
-            TreesitterContextBottom = {
-              style = {},
-            },
-          }
-        end,
-      },
+      highlight_overrides = {},
       dim_inactive = {
         enabled = false, -- dims the background color of inactive window
         shade = "dark",

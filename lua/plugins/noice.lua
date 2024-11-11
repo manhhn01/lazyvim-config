@@ -12,18 +12,60 @@ return {
         view = "mini",
       },
 
-      -- skip notify
+      {
+        filter = {
+          event = "msg_show",
+          any = {
+            { find = "Hop%s*" },
+          },
+        },
+        view = "mini",
+      },
+
       {
         filter = {
           event = "notify",
+          error = true,
           any = {
-            { find = "Cannot find provider for the feature" },
+            { find = "completion request failed%s*" },
           },
         },
-        opts = {
-          skip = true,
-        },
+        view = "mini",
       },
+
+      {
+        filter = {
+          event = "lsp",
+          any = {
+            { find = "Inlay Hints request failed" },
+          },
+        },
+        view = "mini",
+      },
+
+      -- skip notify
+
+      -- Codeium error message
+      {
+        filter = {
+          event = "msg_show",
+          kind = "echomsg",
+          any = {
+            { find = "codeium" },
+          },
+        },
+        opts = { skip = true },
+      },
+
+      -- {
+      --   filter = {
+      --     event = "notify",
+      --     any = {
+      --       { find = "Cannot find provider for the feature" },
+      --     },
+      --   },
+      --   opts = { skip = true },
+      -- },
       {
         filter = {
           event = "msg_show",
@@ -32,9 +74,7 @@ return {
             { find = "tsserver" },
           },
         },
-        opts = {
-          skip = true,
-        },
+        opts = { skip = true },
       },
       {
         filter = {
@@ -42,17 +82,6 @@ return {
           any = {
             { find = "tsserver" },
             { find = "No information available" },
-          },
-        },
-        opts = {
-          skip = true,
-        },
-      },
-      {
-        filter = {
-          event = "lsp",
-          any = {
-            { find = "Inlay Hints request failed" },
           },
         },
         opts = {

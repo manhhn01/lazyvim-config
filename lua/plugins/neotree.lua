@@ -31,12 +31,6 @@ return {
       },
       filesystem = {
         commands = {
-          -- image_preview = function(state)
-          --   local node = state.tree:get_node()
-          --   if node.type == "file" then
-          --     -- TODO:
-          --   end
-          -- end,
           -- over write default 'delete' command to 'trash'.
           delete = function(state)
             local inputs = require("neo-tree.ui.inputs")
@@ -101,7 +95,6 @@ return {
           ["<c-t>"] = "open_tabnew",
           ["s"] = "none",
           ["/"] = "none",
-          -- ["<leader>p"] = "image_preview",
         },
       },
     },

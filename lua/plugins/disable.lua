@@ -1,4 +1,5 @@
 local disabled = {
+  "folke/tokyonight.nvim",
   "folke/flash.nvim",
   "zbirenbaum/copilot-cmp",
   "echasnovski/mini.indentscope",

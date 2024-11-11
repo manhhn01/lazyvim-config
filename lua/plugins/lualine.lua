@@ -8,8 +8,8 @@ return {
         theme = "auto",
         globalstatus = true,
         disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
-        component_separators = "|",
-        section_separators = { left = "", right = "" },
+        component_separators = "┊",
+        section_separators = { left = " ", right = " " },
       },
       sections = vim.tbl_deep_extend("force", opts.sections, {
         lualine_y = {},

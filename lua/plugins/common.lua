@@ -136,13 +136,6 @@ return {
   },
 
   {
-    "rcarriga/nvim-notify",
-    opts = {
-      stages = "fade_in_slide_out",
-    },
-  },
-
-  {
     "akinsho/toggleterm.nvim",
     version = "*",
     event = "VeryLazy",
@@ -163,14 +156,17 @@ return {
     },
     opts = {
       open_mapping = nil,
-      shell = "/usr/local/bin/fish",
+      shell = vim.o.shell,
       float_opts = {
         title_pos = "center",
         border = "rounded",
       },
       highlights = {
         FloatBorder = {
-          link = "FloatBorder",
+          link = "ToggleTermNormalFloatBorder",
+        },
+        NormalFloat = {
+          link = "ToggleTermNormalFloat",
         },
       },
       winbar = {
@@ -180,5 +176,80 @@ return {
         end,
       },
     },
+  },
+
+  {
+    "nvchad/showkeys",
+    cmd = "ShowkeysToggle",
+    opts = {
+      timeout = 1,
+      maxkeys = 5,
+    },
+  },
+
+  {
+    "mikesmithgh/kitty-scrollback.nvim",
+    cmd = { "KittyScrollbackGenerateKittens", "KittyScrollbackCheckHealth" },
+    event = { "User KittyScrollbackLaunch" },
+    version = "*",
+    config = function()
+      require("kitty-scrollback").setup()
+    end,
+  },
+
+  {
+    "3rd/image.nvim",
+    build = false,
+    enabled = not vim.g.neovide,
+    event = "VeryLazy",
+    opts = {
+      processor = "magick_cli",
+      backend = "kitty",
+      integrations = {
+        markdown = {
+          enabled = true,
+          clear_in_insert_mode = false,
+          download_remote_images = true,
+          only_render_image_at_cursor = true,
+          filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
+        },
+        neorg = {
+          enabled = false,
+          clear_in_insert_mode = false,
+          download_remote_images = true,
+          only_render_image_at_cursor = false,
+          filetypes = { "norg" },
+        },
+        html = {
+          enabled = false,
+        },
+        css = {
+          enabled = false,
+        },
+      },
+      max_width = nil,
+      max_height = nil,
+      max_width_window_percentage = nil,
+      max_height_window_percentage = 50,
+      window_overlap_clear_enabled = false, -- toggles images when windows are overlapped
+      window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+      editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
+      tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
+      hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
+    },
+
+    config = function(_, opts)
+      require("image").setup(opts)
+    end,
+  },
+
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "codecompanion" },
+    opts = function(_, opts)
+      return vim.tbl_deep_extend("force", opts, {
+        render_modes = { "n", "c", "i" },
+      })
+    end,
   },
 }

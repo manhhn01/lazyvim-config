@@ -6,18 +6,19 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
 end
 
--- Turn off number in terminal
+-- Disable number in terminal
 vim.api.nvim_create_autocmd("TermOpen", {
   pattern = "*",
   command = "setlocal nonumber norelativenumber signcolumn=no nospell",
 })
 
+-- Disable comment on new line
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "*",
   command = "setlocal formatoptions-=cro",
 })
 
--- wrap and check for spell in text filetypes
+-- Wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("no_wrap_spell"),
   pattern = { "TelescopePrompt", "dashboard", "neo-tree", "lazy", "grug-far", "neotest-summary" },
