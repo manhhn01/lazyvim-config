@@ -15,7 +15,7 @@ return {
               include_current_win = false,
               autoselect_one = true,
               bo = {
-                filetype = { "neo-tree", "neo-tree-popup", "notify", "noice", "incline" },
+                filetype = { "neo-tree", "neo-tree-popup", "notify", "snacks_notif", "noice", "incline" },
                 buftype = { "terminal", "quickfix", "help" },
               },
             },

@@ -31,6 +31,7 @@ return {
       function()
         require("hop").hint_char1({
           direction = require("hop.hint").HintDirection.AFTER_CURSOR,
+          hint_offset = -1,
           current_line_only = true,
         })
       end,
@@ -43,6 +44,7 @@ return {
       function()
         require("hop").hint_char1({
           direction = require("hop.hint").HintDirection.BEFORE_CURSOR,
+          hint_offset = 1,
           current_line_only = true,
         })
       end,

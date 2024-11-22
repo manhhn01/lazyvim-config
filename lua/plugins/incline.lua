@@ -20,6 +20,14 @@ return {
         },
       },
     },
+    window = {
+      margin = {
+        horizontal = 0,
+        vertical = 0,
+      },
+      padding = 0,
+      padding_char = " ",
+    },
     hide = {
       cursorline = true,
     },
@@ -48,12 +56,12 @@ return {
         })
 
       return {
-        icon and fg_color and { " ", icon, " ", guifg = fg_color } or "",
+        icon and fg_color and { " ", icon, " ", guifg = fg_color, guibg = "none" } or "",
         " ",
         shorten_path_styled,
         modified and " 󰙴 " or "",
         " ",
-        group = "InclineBg"
+        group = "InclineBg",
       }
     end,
   },

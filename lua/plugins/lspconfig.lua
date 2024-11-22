@@ -22,7 +22,7 @@ return {
       inlay_hints = {
         enabled = true,
         exclude = {
-          "typescript",
+          -- "typescript",
           "typescriptreact",
           "javascript",
           "javascriptreact",

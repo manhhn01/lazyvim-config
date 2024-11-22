@@ -66,6 +66,10 @@ return {
 
           InclineBg = {
             bg = colors.mantle,
+          },
+
+          NeoTreeIndentMarker = {
+            fg = colors.surface1,
           }
         }
 

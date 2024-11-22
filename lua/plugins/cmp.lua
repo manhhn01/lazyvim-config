@@ -34,9 +34,6 @@ end
 return {
   {
     "hrsh7th/nvim-cmp",
-    dependencies = {
-      { "Exafunction/codeium.nvim" },
-    },
     opts = {
       experimental = {
         ghost_text = false, -- this feature conflict with copilot.vim's preview.
@@ -132,6 +129,7 @@ return {
   {
     "Jezda1337/nvim-html-css",
     event = "VeryLazy",
+    ft = "typescriptreact",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-lua/plenary.nvim",

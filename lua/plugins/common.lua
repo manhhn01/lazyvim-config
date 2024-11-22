@@ -39,7 +39,7 @@ return {
     "dstein64/nvim-scrollview",
     event = "BufReadPost",
     opts = {
-      excluded_filetypes = { "NvimTree", "dashboard", "neoterm", "neo-tree" },
+      excluded_filetypes = { "NvimTree", "dashboard", "snacks_dashboard", "neoterm", "neo-tree" },
       current_only = true,
       winblend_gui = vim.g.transparent and 15 or 50,
       base = "right",

@@ -1,6 +1,7 @@
 return {
   {
     "Exafunction/codeium.nvim",
+    enabled = false,
     cmd = "Codeium",
     opts = {},
     config = function()
@@ -29,7 +30,7 @@ return {
 
   {
     "zbirenbaum/copilot.lua",
-    enabled = false,
+    enabled = true,
     event = "VeryLazy",
     opts = {
       panel = {
@@ -146,12 +147,15 @@ return {
     event = "VeryLazy",
     opts = {
       display = {
+        diff = {
+          enabled = false,
+        },
         chat = {
           window = {
             layout = "vertical", -- float|vertical|horizontal|buffer
             border = "single",
             height = 0.8,
-            width = 0.35,
+            width = 0.25,
             relative = "editor",
             opts = {
               breakindent = true,
@@ -169,7 +173,7 @@ return {
           },
           intro_message = "✨ Press ? for options",
           start_in_insert_mode = true,
-          render_headers = false,
+          show_header_separator = false,
           ---@param adapter CodeCompanion.Adapter
           token_count = function(tokens, adapter) -- The function to display the token count
             return " " .. tokens .. " tokens"
@@ -178,10 +182,25 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "openai",
+          adapter = "copilot",
+          roles = {
+            llm = "CodeCompanion ✨", -- The markdown header content for the LLM's responses
+            user = "Me", -- The markdown header for your questions
+          },
+          keymaps = {
+            close = {
+              modes = {
+                n = "<C-c>",
+                i = "<C-c>",
+              },
+              index = 3,
+              callback = "keymaps.close",
+              description = "Close Chat",
+            },
+          },
         },
         inline = {
-          adapter = "openai",
+          adapter = "copilot",
         },
       },
       adapters = {
@@ -213,6 +232,23 @@ return {
         mode = { "n", "x" },
         desc = "Code companion action",
       },
+      {
+        "<leader>ac",
+        function()
+          vim.cmd("CodeCompanionAction")
+        end,
+        mode = { "n", "x" },
+        desc = "Code companion action",
+      },
+      {
+        "<leader>ae",
+        function()
+          vim.cmd("CodeCompanion /explain")
+        end,
+        mode = { "n", "x" },
+        desc = "Code companion action",
+      }
+
     },
     config = function(_, opts)
       require("codecompanion").setup(opts)

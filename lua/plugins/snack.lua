@@ -12,7 +12,7 @@ return {
       },
       win = {
         backdrop = 100, -- disable backdrop
-      }
+      },
     }
 
     return vim.tbl_deep_extend("force", opts, config)

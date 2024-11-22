@@ -42,7 +42,6 @@ map("n", "<C-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width
 map("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 
-
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 unmap("n", "n")
 unmap("x", "n")
@@ -99,14 +98,18 @@ map("n", "<leader>fO", "<leader>fr", { remap = true })
 unmap("n", "<leader><space>")
 map("n", "<space><space>", function()
   require("gitsigns").preview_hunk()
-end)
+end, { desc = "Preview hunk" })
 map("n", "<space>j", function()
   require("gitsigns").next_hunk()
-end)
+end, {
+  desc = "Next hunk",
+})
 
 map("n", "<space>k", function()
   require("gitsigns").prev_hunk()
-end)
+end, {
+  desc = "Previous hunk",
+})
 
 -- quick move cursor in insert mode
 map("i", "<C-h>", "<Left>", { desc = "Move left" })
