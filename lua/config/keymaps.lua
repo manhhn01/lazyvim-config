@@ -100,13 +100,13 @@ map("n", "<space><space>", function()
   require("gitsigns").preview_hunk()
 end, { desc = "Preview hunk" })
 map("n", "<space>j", function()
-  require("gitsigns").next_hunk()
+  require("gitsigns").nav_hunk('next')
 end, {
   desc = "Next hunk",
 })
 
 map("n", "<space>k", function()
-  require("gitsigns").prev_hunk()
+  require("gitsigns").nav_hunk('prev')
 end, {
   desc = "Previous hunk",
 })
