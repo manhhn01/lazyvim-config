@@ -16,6 +16,8 @@ vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
 local opt = vim.opt
 
+vim.o.shell = "/bin/bash"
+
 opt.autowrite = false -- Auto write
 
 opt.scrolloff = 5 -- Lines of context

@@ -156,7 +156,7 @@ return {
     },
     opts = {
       open_mapping = nil,
-      shell = vim.o.shell,
+      shell = vim.fn.executable("fish") == 1 and "fish" or vim.o.shell,
       float_opts = {
         title_pos = "center",
         border = "rounded",
