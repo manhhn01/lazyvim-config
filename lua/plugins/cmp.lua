@@ -27,7 +27,6 @@ local function tailwind(entry, item)
     end
 
     item.kind_hl_group = hl
-    item.menu_hl_group = hl
   end
 end
 
@@ -37,7 +36,6 @@ return {
     opts = {
       experimental = {
         ghost_text = false, -- this feature conflict with copilot.vim's preview.
-        -- ghost_text = true,
       },
 
       formatting = {
@@ -80,9 +78,9 @@ return {
       sources = cmp.config.sources({
         {
           name = "nvim_lsp",
-          entry_filter = function(entry)
-            return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
-          end,
+          -- entry_filter = function(entry)
+          --   return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
+          -- end,
         },
 
         {
@@ -128,9 +126,11 @@ return {
 
   {
     "Jezda1337/nvim-html-css",
+    enabled = false,
     event = "VeryLazy",
     ft = "typescriptreact",
     dependencies = {
+      "hrsh7th/nvim-cmp",
       "nvim-treesitter/nvim-treesitter",
       "nvim-lua/plenary.nvim",
     },

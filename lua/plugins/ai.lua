@@ -1,8 +1,9 @@
 return {
   {
     "Exafunction/codeium.nvim",
-    enabled = false,
+    enabled = true,
     cmd = "Codeium",
+    event = "BufReadPost",
     opts = {},
     config = function()
       require("codeium").setup({
@@ -30,7 +31,7 @@ return {
 
   {
     "zbirenbaum/copilot.lua",
-    enabled = true,
+    enabled = false,
     event = "VeryLazy",
     opts = {
       panel = {
@@ -79,7 +80,7 @@ return {
 
   {
     "yetone/avante.nvim",
-    enabled = false,
+    enabled = true,
     event = "VeryLazy",
     dependencies = {
       "echasnovski/mini.icons",
@@ -140,11 +141,12 @@ return {
 
   {
     "olimorris/codecompanion.nvim",
+    enabled = false,
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       { "MeanderingProgrammer/render-markdown.nvim" },
     },
-    event = "VeryLazy",
+    event = "BufReadPost",
     opts = {
       display = {
         diff = {
@@ -182,7 +184,7 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "copilot",
+          adapter = "openai",
           roles = {
             llm = "CodeCompanion ✨", -- The markdown header content for the LLM's responses
             user = "Me", -- The markdown header for your questions
@@ -200,7 +202,7 @@ return {
           },
         },
         inline = {
-          adapter = "copilot",
+          adapter = "openai",
         },
       },
       adapters = {

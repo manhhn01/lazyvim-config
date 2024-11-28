@@ -98,5 +98,26 @@ return {
         },
       },
     },
+    keys = function()
+      local neotreecmd = require("neo-tree.command")
+      local Util = require("lazyvim.util")
+
+      return {
+        {
+          "se",
+          function()
+            neotreecmd.execute({ toggle = false, dir = vim.uv.cwd() })
+          end,
+          desc = "Focus NeoTree(cwd)",
+        },
+        {
+          "sE",
+          function()
+            neotreecmd.execute({ toggle = false, dir = Util.root() })
+          end,
+          desc = "Focus NeoTree(root dir)",
+        },
+      }
+    end,
   },
 }

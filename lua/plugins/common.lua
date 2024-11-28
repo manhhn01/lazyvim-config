@@ -1,3 +1,15 @@
+local togglerterm_count = function()
+  local count = 0
+
+  for _, buf in pairs(vim.api.nvim_list_bufs()) do
+    if vim.bo[buf].filetype == "toggleterm" then
+      count = count + 1
+    end
+  end
+
+  return count
+end
+
 return {
   {
     "echasnovski/mini.surround",
@@ -138,8 +150,16 @@ return {
   {
     "akinsho/toggleterm.nvim",
     version = "*",
-    event = "VeryLazy",
     keys = {
+      {
+        "<C-\\>n",
+        function()
+          local count = togglerterm_count()
+          vim.print(count)
+          vim.cmd([[ ToggleTerm direction=horizontal name=' Term ' ]])
+        end,
+        mode = { "n", "x", "t", "i" },
+      },
       {
         "<C-t>",
         function()
@@ -150,8 +170,9 @@ return {
       {
         "<C-/>",
         function()
-          vim.cmd([[ ToggleTerm size=40 direction=float name=' Float Term ' ]])
+          vim.cmd([[ ToggleTerm size=40 direction=float name=' Term ' ]])
         end,
+        mode = { "n", "x", "t", "i" },
       },
     },
     opts = {
@@ -176,6 +197,9 @@ return {
         end,
       },
     },
+    init = function ()
+      -- TODO: exit with q
+    end
   },
 
   {
@@ -245,11 +269,35 @@ return {
 
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    ft = { "markdown", "codecompanion" },
+    ft = { "markdown", "codecompanion", "Avante" },
     opts = function(_, opts)
       return vim.tbl_deep_extend("force", opts, {
         render_modes = { "n", "c", "i" },
       })
     end,
+  },
+
+  {
+    "sphamba/smear-cursor.nvim",
+    enabled = false,
+
+    opts = {
+      -- Smear cursor when switching buffers
+      smear_between_buffers = true,
+
+      -- Smear cursor when moving within line or to neighbor lines
+      smear_between_neighbor_lines = false,
+
+      -- Use floating windows to display smears outside buffers.
+      -- May have performance issues with other plugins.
+      use_floating_windows = true,
+
+      -- Set to `true` if your font supports legacy computing symbols (block unicode symbols).
+      -- Smears will blend better on all backgrounds.
+      legacy_computing_symbols_support = false,
+
+      -- Attempt to hide the real cursor when smearing.
+      hide_target_hack = true,
+    },
   },
 }

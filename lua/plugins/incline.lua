@@ -12,7 +12,7 @@ return {
       groups = {
         InclineNormal = {
           default = true,
-          group = "TelescopePreviewLink",
+          group = "InclineNormal",
         },
         InclineNormalNC = {
           default = true,

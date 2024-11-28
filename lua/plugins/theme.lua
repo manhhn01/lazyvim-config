@@ -68,9 +68,21 @@ return {
             bg = colors.mantle,
           },
 
+          InclineNormal = {
+            fg = colors.maroon,
+          },
+
           NeoTreeIndentMarker = {
             fg = colors.surface1,
-          }
+          },
+
+          MiniFilesTitleFocused = {
+            fg = colors.maroon,
+          },
+
+          FloatTitle = {
+            fg = colors.blue,
+          },
         }
 
         if vim.g.transparent then

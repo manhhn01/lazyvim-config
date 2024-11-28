@@ -3,7 +3,6 @@
 -- Add any additional keymaps here
 
 local Util = require("lazyvim.util")
-local neotreecmd = require("neo-tree.command")
 
 local map = function(mode, key, result, options)
   local opts = { noremap = true, silent = true }
@@ -24,7 +23,7 @@ end
 
 -- Select all text in the buffer
 -- map("n", "<C-a>", "ggVG", { desc = "Select all" })
-map("n", "<D-a>", "ggVG", { desc = "Select all" })
+map("n", "ga", "ggVG", { desc = "Select all" })
 
 -- Move to window using the s + hjkl keys
 map("n", "sh", "<C-w>h", { desc = "Go to left window" })
@@ -75,14 +74,6 @@ map("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "L", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 map("n", "<leader>rn", "<leader>cr", { desc = "Rename", remap = true })
 
--- neo-tree
-map("n", "se", function()
-  neotreecmd.execute({ toggle = false, dir = vim.uv.cwd() })
-end, { desc = "Focus NeoTree(cwd)" })
-map("n", "sE", function()
-  neotreecmd.execute({ toggle = false, dir = Util.root() })
-end, { desc = "Focus NeoTree(root dir)" })
-
 -- telescope
 map("n", "<leader>fd", "<leader>sd", { remap = true })
 map("n", "<leader>fw", "<leader>sg", { remap = true })
@@ -100,13 +91,13 @@ map("n", "<space><space>", function()
   require("gitsigns").preview_hunk()
 end, { desc = "Preview hunk" })
 map("n", "<space>j", function()
-  require("gitsigns").nav_hunk('next')
+  require("gitsigns").nav_hunk("next")
 end, {
   desc = "Next hunk",
 })
 
 map("n", "<space>k", function()
-  require("gitsigns").nav_hunk('prev')
+  require("gitsigns").nav_hunk("prev")
 end, {
   desc = "Previous hunk",
 })
