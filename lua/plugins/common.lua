@@ -19,8 +19,8 @@ return {
         delete = "ds",
         replace = "cs",
       },
+      n_lines = 100,
     },
-    n_lines = 100,
   },
 
   {
@@ -197,9 +197,9 @@ return {
         end,
       },
     },
-    init = function ()
+    init = function()
       -- TODO: exit with q
-    end
+    end,
   },
 
   {
