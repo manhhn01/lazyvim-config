@@ -21,8 +21,6 @@ local unmap = function(mode, key)
   vim.keymap.del(modes, key)
 end
 
--- Select all text in the buffer
--- map("n", "<C-a>", "ggVG", { desc = "Select all" })
 map("n", "ga", "ggVG", { desc = "Select all" })
 
 -- Move to window using the s + hjkl keys
@@ -37,11 +35,11 @@ map("n", "<C-j>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
 map("n", "<C-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 map("n", "<C-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 
--- buffers
+-- Bufferline
 map("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 
--- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+-- Revert to original keymaps
 unmap("n", "n")
 unmap("x", "n")
 unmap("o", "n")
@@ -49,13 +47,7 @@ unmap("n", "N")
 unmap("x", "N")
 unmap("o", "N")
 
--- new file
 map("n", "<leader>n", "<cmd>enew<cr>", { desc = "New File" })
-
--- formatting
-map({ "n", "v" }, "<leader>i", function()
-  Util.format({ force = true })
-end, { desc = "Format" })
 
 -- Remove floating terminal mappings
 unmap("n", "<leader>ft")
@@ -70,11 +62,14 @@ map("n", "sv", "<C-W>v", { desc = "Split window right" })
 
 map("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 
--- lsp
+-- Lsp
 map("n", "L", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 map("n", "<leader>rn", "<leader>cr", { desc = "Rename", remap = true })
+map({ "n", "v" }, "<leader>i", function()
+  Util.format({ force = true })
+end, { desc = "Format" })
 
--- telescope
+-- Telescope
 map("n", "<leader>fd", "<leader>sd", { remap = true })
 map("n", "<leader>fw", "<leader>sg", { remap = true })
 map("n", "<leader>fW", "<leader>sG", { remap = true })
@@ -85,31 +80,42 @@ map("n", "<leader>ft", "<leader>st", { remap = true })
 map("n", "<leader>fo", "<leader>fr", { remap = true })
 map("n", "<leader>fO", "<leader>fr", { remap = true })
 
--- gitsigns
+-- Gitsigns
 unmap("n", "<leader><space>")
 map("n", "<space><space>", function()
   require("gitsigns").preview_hunk()
 end, { desc = "Preview hunk" })
 map("n", "<space>j", function()
   require("gitsigns").nav_hunk("next")
-end, {
-  desc = "Next hunk",
-})
-
+end, { desc = "Next hunk" })
 map("n", "<space>k", function()
   require("gitsigns").nav_hunk("prev")
 end, {
   desc = "Previous hunk",
 })
 
--- quick move cursor in insert mode
+-- Quick move cursor in insert mode
 map("i", "<C-h>", "<Left>", { desc = "Move left" })
 map("i", "<C-l>", "<Right>", { desc = "Move right" })
 
--- replace to black hole register
+map("n", "H", "^", { desc = "Move to start of line" })
+map("n", "L", "$", { desc = "Move to end of line" })
+
+-- Search and replace word under the cursor
+vim.keymap.set("n", "<leader>R", [[:%s/\<<C-r><C-w>\>//g<Left><Left>]])
+
+-- Replace to black hole register
 map("x", "<leader>P", '"_dP', { desc = "Replace to black hole register" })
 
--- some abbreviations for common typos
+-- Move selected lines with shift+j or shift+k
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", {
+  silent = true,
+})
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", {
+  silent = true,
+})
+
+-- Some abbreviations for common typos
 vim.cmd("cnoreabbrev W! w!")
 vim.cmd("cnoreabbrev Q! q!")
 vim.cmd("cnoreabbrev Qall! qall!")
