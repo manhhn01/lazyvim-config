@@ -3,7 +3,6 @@ return {
   opts = {
     options = {
       indicator = {
-        -- style = "none",
         icon = "▌",
         style = "icon",
       },

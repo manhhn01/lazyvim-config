@@ -29,31 +29,12 @@ return {
   },
 
   {
-    "VidocqH/lsp-lens.nvim",
-    event = "VeryLazy",
-    opts = {
-      sections = {
-        definition = false,
-        references = function(count)
-          return count .. " references"
-        end,
-        implements = function(count)
-          return count .. " implements"
-        end,
-      },
-    },
-    config = function(_, opts)
-      require("lsp-lens").setup(opts)
-    end,
-  },
-
-  {
     "dstein64/nvim-scrollview",
     event = "BufReadPost",
     opts = {
       excluded_filetypes = { "NvimTree", "dashboard", "snacks_dashboard", "neoterm", "neo-tree" },
       current_only = true,
-      winblend_gui = vim.g.transparent and 15 or 50,
+      winblend_gui = vim.g.transparent and 15 or 20,
       base = "right",
       column = 1,
       signs_column = 0,
@@ -93,7 +74,7 @@ return {
       editor = {
         image = nil,
         client = "neovim",
-        tooltip = "hyperextensible Vim-based text editor ",
+        tooltip = "hyperextensible Vim-based text editor",
       },
       display = {
         show_time = true,
@@ -197,18 +178,6 @@ return {
         end,
       },
     },
-    init = function()
-      -- TODO: exit with q
-    end,
-  },
-
-  {
-    "nvchad/showkeys",
-    cmd = "ShowkeysToggle",
-    opts = {
-      timeout = 1,
-      maxkeys = 5,
-    },
   },
 
   {
@@ -278,26 +247,10 @@ return {
   },
 
   {
-    "sphamba/smear-cursor.nvim",
-    enabled = false,
-
-    opts = {
-      -- Smear cursor when switching buffers
-      smear_between_buffers = true,
-
-      -- Smear cursor when moving within line or to neighbor lines
-      smear_between_neighbor_lines = false,
-
-      -- Use floating windows to display smears outside buffers.
-      -- May have performance issues with other plugins.
-      use_floating_windows = true,
-
-      -- Set to `true` if your font supports legacy computing symbols (block unicode symbols).
-      -- Smears will blend better on all backgrounds.
-      legacy_computing_symbols_support = false,
-
-      -- Attempt to hide the real cursor when smearing.
-      hide_target_hack = true,
+    "nvzone/typr",
+    dependencies = {
+      "nvzone/volt",
     },
+    cmd = { "Typr" },
   },
 }

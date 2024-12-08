@@ -28,6 +28,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Backup on write
 vim.api.nvim_create_autocmd("BufWritePre", {
   callback = function()
     local extension = "~" .. vim.fn.strftime("%Y-%m-%d-%H%M%S")

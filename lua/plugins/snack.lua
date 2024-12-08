@@ -19,6 +19,9 @@ return {
       win = {
         backdrop = 100, -- disable backdrop
       },
+      dashboard = {
+        enabled = false,
+      },
     }
 
     return vim.tbl_deep_extend("force", opts, config)

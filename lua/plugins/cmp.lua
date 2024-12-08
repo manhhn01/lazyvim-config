@@ -1,4 +1,9 @@
-local cmp = require("cmp")
+local success, cmp = pcall(require, "cmp")
+
+if not success then
+  return {}
+end
+
 local kind = require("utils.kind")
 local api = vim.api
 

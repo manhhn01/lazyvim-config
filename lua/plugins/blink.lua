@@ -1,30 +1,31 @@
 local kind = require("utils.kind")
 
--- TODO: Todo list
--- - Update kind color for tailwind
+-- TODO: Update kind color for tailwind
 
 return {
   "saghen/blink.cmp",
+  event = "VeryLazy",
   opts = {
-    keymap = {
-      preset = "default",
+    keymap = { preset = "default" },
+    appearance = {
+      kind_icons = kind.vscode_kind,
     },
-    kind_icons = kind.vscode_kind,
-    windows = {
+    completion = {
       ghost_text = {
         enabled = false,
       },
-      autocomplete = {
+      menu = {
         border = "rounded",
-        winhighlight = "Normal:CmpPmenu,CursorLine:Visual,Search:None",
+        winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
         draw = {
-          columns = {
-            { "label", "label_description", gap = 2 },
-            { "kind_icon", "kind" },
-          },
+          gap = 2,
+          columns = { { "label", "label_description", gap = 2 }, { "kind_icon", "kind" } },
+          treesitter = false,
         },
       },
-      documentation = {
+    },
+    documentation = {
+      window = {
         border = "rounded",
         winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
       },

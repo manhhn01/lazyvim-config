@@ -4,7 +4,6 @@
 
 vim.g.mapleader = ";"
 
--- LazyVim auto format
 vim.g.autoformat = false
 
 -- LazyVim root dir detection
@@ -17,16 +16,18 @@ vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 local opt = vim.opt
 
 vim.o.shell = "/bin/bash"
+vim.o.shortmess = "tFocWTCOl" -- enable intro
 
-opt.autowrite = false -- Auto write
+opt.autowrite = false
 
-opt.scrolloff = 5 -- Lines of context
+opt.scrolloff = 5
 
 opt.undofile = true
 opt.backup = true
 
+opt.wrap = true
 opt.showbreak = "↪"
-opt.wrap = true -- Wrap lines
+
 opt.fillchars = {
   foldopen = "",
   foldclose = "",
@@ -40,11 +41,16 @@ opt.list = true
 opt.listchars:append("trail:⋅")
 opt.listchars:append("multispace:⋅")
 opt.listchars:append("lead: ")
+opt.listchars:append("tab:→ ")
+
 opt.spell = true
 opt.spelllang = "en_us"
 opt.spelloptions = { "camel", "noplainbuffer" }
 
 opt.pumblend = 0
+
+-- Simple statusline
+opt.statusline = "%#StatusLineFile#%f%* %#StatusLineNormal#%y %m%r %h%=%([%{&fenc==''?&enc:&fenc}] [L%l:%c %P]%)"
 
 vim.g.rustaceanvim = {
   server = {
@@ -54,7 +60,7 @@ vim.g.rustaceanvim = {
           -- This may need to be tweaked, depending on the operating system.
           and mason_registry.get_package("rust-analyzer"):get_install_path() .. "/rust-analyzer"
         or "rust-analyzer"
-      return { ra_binary } -- You can add args to the list, such as '--log-file'
+      return { ra_binary }
     end,
   },
 }

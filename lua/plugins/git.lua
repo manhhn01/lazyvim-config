@@ -20,9 +20,11 @@ return {
             GitConflictIncoming = "theirs",
             GitConflictIncomingLabel = "theirs",
           }
+
           local mark = vim.iter(vim.inspect_pos().extmarks):find(function(e)
             return e.ns == "git-conflict" and actions[e.opts.hl_group]
           end)
+
           if not mark then
             vim.notify("No conflict under cursor", vim.log.levels.WARN)
             return
@@ -78,9 +80,10 @@ return {
       preview_config = {
         style = "minimal",
         relative = "cursor",
+        border = "rounded",
         row = 1,
         col = 0,
-        title = "Preview hunk",
+        title = " Preview hunk ",
       },
       signs = {
         add = { text = "│" },

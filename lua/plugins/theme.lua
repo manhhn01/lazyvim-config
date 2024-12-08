@@ -9,6 +9,7 @@ return {
         local custom_highlights = {
           CmpBorder = { fg = colors.surface1 },
           CmpDocBorder = { fg = colors.surface1 },
+          BlinkCmpMenuBorder = { fg = colors.surface1 },
 
           TreesitterContextBottom = {
             style = {},
@@ -83,6 +84,14 @@ return {
           FloatTitle = {
             fg = colors.blue,
           },
+
+          StatusLineFile = {
+            fg = colors.blue,
+          },
+
+          StatusLineNormal = {
+            fg = colors.overlay0,
+          }
         }
 
         if vim.g.transparent then
