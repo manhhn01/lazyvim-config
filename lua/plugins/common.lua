@@ -116,6 +116,7 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "LazyFile",
+    main = "ibl",
     opts = function(_, opts)
       return vim.tbl_deep_extend("force", opts, {
         indent = { char = "┊" },

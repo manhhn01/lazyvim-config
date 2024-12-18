@@ -1,7 +1,7 @@
 local success, cmp = pcall(require, "cmp")
 
 if not success then
-  return {}
+  return
 end
 
 local kind = require("utils.kind")

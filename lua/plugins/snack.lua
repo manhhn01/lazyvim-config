@@ -11,15 +11,34 @@ return {
       terminal = {
         enabled = false,
       },
+
       notifier = {
         enabled = true,
         timeout = 3000,
         style = "compact",
       },
+
       win = {
         backdrop = 100, -- disable backdrop
       },
+
       dashboard = {
+        enabled = false,
+      },
+
+      zen = {
+        enabled = false,
+      },
+
+      words = {
+        enabled = true,
+      },
+
+      scroll = {
+        enabled = true,
+      },
+
+      indent = {
         enabled = false,
       },
     }

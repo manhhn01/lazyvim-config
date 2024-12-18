@@ -2,7 +2,7 @@ return {
   {
     "akinsho/git-conflict.nvim",
     version = "*",
-    config = {
+    opts = {
       default_mappings = false,
       default_commands = true,
       disable_diagnostics = true,

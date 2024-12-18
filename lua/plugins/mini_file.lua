@@ -1,4 +1,5 @@
 local mini_files = require("mini.files")
+local mini_utils = require("utils.mini_files")
 
 return {
   "echasnovski/mini.files",
@@ -32,6 +33,25 @@ return {
     },
   },
   init = function()
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "MiniFilesBufferCreate",
+      callback = function(args)
+        local buf_id = args.data.buf_id
+        local show_dotfiles = true
+
+        local toggle_dotfiles = function()
+          show_dotfiles = not show_dotfiles
+          local new_filter = show_dotfiles and mini_utils.filter_show or mini_utils.filter_hide
+          MiniFiles.refresh({ content = { filter = new_filter } })
+        end
+
+        mini_utils.map_split(buf_id, "<C-s>", "belowright horizontal", true)
+        mini_utils.map_split(buf_id, "<C-v>", "belowright vertical", true)
+
+        vim.keymap.set("n", "g.", toggle_dotfiles, { buffer = buf_id })
+      end,
+    })
+
     vim.api.nvim_create_autocmd("User", {
       pattern = "MiniFilesWindowOpen",
       callback = function(args)
