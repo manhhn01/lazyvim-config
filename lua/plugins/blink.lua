@@ -20,14 +20,14 @@ return {
         draw = {
           gap = 2,
           columns = { { "label", "label_description", gap = 2 }, { "kind_icon", "kind" } },
-          treesitter = false,
+          treesitter = {},
         },
       },
-    },
-    documentation = {
-      window = {
-        border = "rounded",
-        winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+      documentation = {
+        window = {
+          border = "rounded",
+          winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+        },
       },
     },
   },
