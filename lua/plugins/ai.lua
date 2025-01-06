@@ -15,6 +15,7 @@ return {
           filetypes = {
             TelescopePrompt = false,
             codecompanion = false,
+            snacks_input = false,
           },
           key_bindings = {
             accept = "<C-u>",
