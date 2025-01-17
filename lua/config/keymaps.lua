@@ -98,9 +98,6 @@ end, {
 map("i", "<C-h>", "<Left>", { desc = "Move left" })
 map("i", "<C-l>", "<Right>", { desc = "Move right" })
 
--- map("n", "H", "^", { desc = "Move to start of line" })
--- map("n", "L", "$", { desc = "Move to end of line" })
-
 -- Search and replace word under the cursor
 vim.keymap.set("n", "<leader>R", [[:%s/\<<C-r><C-w>\>//g<Left><Left>]])
 

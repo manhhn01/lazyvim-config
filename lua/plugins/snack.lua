@@ -19,21 +19,18 @@ return {
       },
 
       win = {
-        backdrop = 100, -- disable backdrop
+        -- backdrop = 100, -- disable backdrop
       },
 
-      input = {
-        win = {
-          keys = {
-            i_del_word = { "<C-w>", "delete_word", mode = "i" }, -- Delete word in insert mode with ctrl-w
-          },
-          actions = {
-            delete_word = function()
-              return "<cmd>normal! diw<cr><right>"
-            end,
+      picker = {
+        previewers = {
+          git = {
+            native = true,
           },
         },
       },
+
+      input = {},
 
       dashboard = {
         enabled = false,
