@@ -7,21 +7,22 @@ return {
       transparent_background = vim.g.transparent or false,
       custom_highlights = function(colors)
         local custom_highlights = {
+          FloatBorder = { bg = colors.mantle },
+
+          -- Completion menu
           CmpBorder = { fg = colors.surface1 },
           CmpDocBorder = { fg = colors.surface1 },
+          BlinkCmpMenu = { bg = colors.base },
+          BlinkCmpMenuSelection = { bg = colors.surface0 },
           BlinkCmpMenuBorder = { fg = colors.surface1 },
 
-          TreesitterContextBottom = {
-            style = {},
-          },
+          TelescopeNormal = { link = "NormalFloat" },
 
-          IblScope = {
-            fg = colors.surface2,
-          },
+          TreesitterContextBottom = { style = {} },
 
-          BufferLineIndicatorSelected = {
-            fg = colors.blue,
-          },
+          IblScope = { fg = colors.surface2 },
+
+          BufferLineIndicatorSelected = { fg = colors.blue },
 
           WindowPickerStatusLineNC = {
             fg = "#000000",
@@ -57,7 +58,7 @@ return {
           },
 
           ToggleTermNormalFloat = {
-            bg = colors.crustn,
+            link = "NormalFloat",
           },
 
           ToggleTermNormalFloatBorder = {
@@ -91,7 +92,7 @@ return {
 
           StatusLineNormal = {
             fg = colors.overlay0,
-          }
+          },
         }
 
         if vim.g.transparent then
@@ -124,11 +125,13 @@ return {
         aerial = true,
         alpha = true,
         cmp = true,
+        blink_cmp = true,
         dashboard = false,
         flash = false,
         gitsigns = true,
         headlines = true,
         illuminate = true,
+        snacks = true,
         indent_blankline = { enabled = true },
         leap = false,
         lsp_trouble = true,

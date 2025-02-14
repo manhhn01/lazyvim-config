@@ -99,18 +99,23 @@ map("i", "<C-h>", "<Left>", { desc = "Move left" })
 map("i", "<C-l>", "<Right>", { desc = "Move right" })
 
 -- Search and replace word under the cursor
-vim.keymap.set("n", "<leader>R", [[:%s/\<<C-r><C-w>\>//g<Left><Left>]])
+map("n", "<leader>R", [[:%s/\<<C-r><C-w>\>//g<Left><Left>]])
 
 -- Replace to black hole register
 map("x", "<leader>P", '"_dP', { desc = "Replace to black hole register" })
 
 -- Move selected lines with shift+j or shift+k
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", {
+map("v", "J", ":m '>+1<CR>gv=gv", {
   silent = true,
 })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", {
+map("v", "K", ":m '<-2<CR>gv=gv", {
   silent = true,
 })
+
+-- Reset terminal buffer
+map("t", "<c-l>", function ()
+  vim.cmd(":set scrollback=1 | sleep 100m | set scrollback=10000")
+end, { desc = "Reset terminal buffer" })
 
 -- Some abbreviations for common typos
 vim.cmd("cnoreabbrev W! w!")

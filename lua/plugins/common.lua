@@ -1,15 +1,3 @@
-local togglerterm_count = function()
-  local count = 0
-
-  for _, buf in pairs(vim.api.nvim_list_bufs()) do
-    if vim.bo[buf].filetype == "toggleterm" then
-      count = count + 1
-    end
-  end
-
-  return count
-end
-
 return {
   {
     "echasnovski/mini.surround",
@@ -59,7 +47,7 @@ return {
 
   {
     "vyfor/cord.nvim",
-    build = "./build",
+    build = ":Cord update",
     event = "VeryLazy",
     opts = {
       usercmds = true,
@@ -97,11 +85,12 @@ return {
         tooltip = "💤",
       },
       text = {
-        viewing = "Viewing {}", -- Text to display when viewing a readonly file
-        editing = "Editing {}", -- Text to display when editing a file
-        file_browser = "Browsing files in {}",
-        plugin_manager = "Managing plugins in {}", -- Text to display when managing plugins
-        lsp_manager = "",
+        editing = function(opts)
+          if opts.filetype == "rust" then
+            return "🦀 Crafting in Rust"
+          end
+          return "Editing " .. opts.filename
+        end,
         workspace = "In a workspace",
       },
       buttons = {
@@ -133,15 +122,6 @@ return {
     "akinsho/toggleterm.nvim",
     version = "*",
     keys = {
-      {
-        "<C-\\>n",
-        function()
-          local count = togglerterm_count()
-          vim.print(count)
-          vim.cmd([[ ToggleTerm direction=horizontal name=' Term ' ]])
-        end,
-        mode = { "n", "x", "t", "i" },
-      },
       {
         "<C-t>",
         function()
@@ -253,30 +233,5 @@ return {
       "nvzone/volt",
     },
     cmd = { "Typr" },
-  },
-
-  {
-    "epwalsh/pomo.nvim",
-    version = "*",
-    lazy = true,
-    cmd = { "TimerStart", "TimerRepeat", "TimerSession" },
-    opts = {
-      notifiers = {
-        -- The "Default" notifier uses 'vim.notify' and works best when you have 'nvim-notify' installed.
-        {
-          name = "Default",
-          opts = {
-            -- With 'nvim-notify', when 'sticky = true' you'll have a live timer pop-up
-            -- continuously displayed. If you only want a pop-up notification when the timer starts
-            -- and finishes, set this to false.
-            sticky = false,
-
-            -- Configure the display icons:
-            title_icon = "󱎫",
-            text_icon = "󰄉",
-          },
-        },
-      },
-    },
   },
 }

@@ -1,7 +1,5 @@
 local kind = require("utils.kind")
 
--- TODO: Update kind color for tailwind
-
 return {
   "saghen/blink.cmp",
   event = "VeryLazy",
@@ -21,6 +19,11 @@ return {
           gap = 2,
           columns = { { "label", "label_description", gap = 2 }, { "kind_icon", "kind" } },
           treesitter = {},
+          components = {
+            label = {
+              width = { fill = true, max = 35 },
+            },
+          },
         },
       },
       documentation = {

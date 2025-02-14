@@ -19,7 +19,7 @@ return {
       },
 
       win = {
-        -- backdrop = 100, -- disable backdrop
+        backdrop = 100, -- disable backdrop
       },
 
       picker = {

@@ -82,7 +82,7 @@ if vim.g.neovide then
 
   vim.g.transparent = false
 else
-  vim.g.transparent = os.getenv("TRANSPARENT") == "1" or true
+  vim.g.transparent = os.getenv("TRANSPARENT") == "1" or false
 
   opt.guicursor = "i:ver1,c:ver1,a:blinkon4,a:blinkwait1" -- blinking cursor
 end
