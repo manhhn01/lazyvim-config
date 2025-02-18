@@ -50,39 +50,15 @@ return {
     build = ":Cord update",
     event = "VeryLazy",
     opts = {
-      usercmds = true,
-      log_level = "warn",
-
-      timer = {
-        enable = true,
-        interval = 5000,
-        reset_on_idle = false,
-        reset_on_change = false,
-      },
       editor = {
         image = nil,
         client = "neovim",
         tooltip = "hyperextensible Vim-based text editor",
       },
       display = {
-        show_time = true,
-        show_repository = true,
-        show_cursor_position = true,
-        swap_fields = false,
-        workspace_blacklist = { "private" }, -- List of workspace names to hide
-      },
-      lsp = {
-        show_problem_count = true, -- Display number of diagnostics problems
-        severity = 1, -- 1 = Error, 2 = Warning, 3 = Info, 4 = Hint
-        scope = "buffer", -- buffer or workspace
-      },
-      idle = {
-        enable = true, -- Enable idle status
-        show_status = true, -- Display idle status, disable to hide the rich presence on idle
-        timeout = 1800000,
-        disable_on_focus = true,
-        text = "Idle",
-        tooltip = "💤",
+        display = {
+          theme = "pastel",
+        },
       },
       text = {
         editing = function(opts)
@@ -92,11 +68,51 @@ return {
           return "Editing " .. opts.filename
         end,
         workspace = "In a workspace",
+        viewing = function(opts)
+          return "Viewing " .. opts.filename
+        end,
+        file_browser = function(opts)
+          return "Browsing files in " .. opts.name
+        end,
+        plugin_manager = function(opts)
+          return "Managing plugins in " .. opts.name
+        end,
+        lsp = function(opts)
+          return "Configuring LSP in " .. opts.name
+        end,
+        docs = function(opts)
+          return "Reading " .. opts.name
+        end,
+        vcs = function(opts)
+          return "Committing changes in " .. opts.name
+        end,
+        notes = function(opts)
+          return "Taking notes in " .. opts.name
+        end,
+        debug = function(opts)
+          return "Debugging in " .. opts.name
+        end,
+        test = function(opts)
+          return "Testing in " .. opts.name
+        end,
+        diagnostics = function(opts)
+          return "Fixing problems in " .. opts.name
+        end,
+        games = function(opts)
+          return "Playing"
+        end,
+        terminal = function(opts)
+          return "Running commands in " .. opts.name
+        end,
       },
       buttons = {
         {
-          label = "View Repository", -- Text displayed on the button
-          url = "https://www.youtube.com/watch?v=iik25wqIuFo", -- URL where the button leads to ('git' = automatically fetch Git repository URL)
+          label = function(opts)
+            return "View Repository"
+          end,
+          url = function(opts)
+            return "https://www.youtube.com/watch?v=iik25wqIuFo"
+          end,
         },
       },
     },

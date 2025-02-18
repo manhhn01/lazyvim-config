@@ -28,6 +28,9 @@ return {
             native = true,
           },
         },
+        layout = {
+          preset = "dropdown",
+        },
       },
 
       input = {},

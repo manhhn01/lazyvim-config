@@ -53,7 +53,7 @@ return {
       suggestion = {
         enabled = true,
         auto_trigger = true,
-        debounce = 75,
+        debounce = 150,
         keymap = {
           accept = "<C-u>",
           accept_word = false,

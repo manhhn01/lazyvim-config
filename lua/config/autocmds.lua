@@ -39,15 +39,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
--- Prevent esc close win in avante
--- HACK: wait this to be merged: https://github.com/yetone/avante.nvim/pull/979
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "Avante",
-  callback = function()
-    vim.keymap.set({ "n", "o" }, "<ESC>", "<Nop>", { buffer = true })
-  end,
-})
-
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "AvanteInput",
   callback = function()
