@@ -4,6 +4,11 @@ return {
   "saghen/blink.cmp",
   event = "VeryLazy",
   opts = {
+    enabled = function()
+      return not vim.tbl_contains({ "AvanteInput", "minifiles" }, vim.bo.filetype)
+        and vim.bo.buftype ~= "prompt"
+        and vim.b.completion ~= false
+    end,
     keymap = { preset = "default" },
     appearance = {
       kind_icons = kind.vscode_kind,

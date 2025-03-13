@@ -17,6 +17,7 @@ return {
       },
     },
     window = {
+      zindex = 30,
       margin = {
         horizontal = 0,
         vertical = 0,

@@ -29,6 +29,8 @@ return {
         },
       },
       servers = {
+        motoko_lsp = {},
+
         eslint = {
           root_dir = get_root_tsconfig,
         },

@@ -16,6 +16,8 @@ return {
             TelescopePrompt = false,
             codecompanion = false,
             snacks_input = false,
+            snacks_picker_input = false,
+            AvanteInput = false,
           },
           key_bindings = {
             accept = "<C-u>",
@@ -88,7 +90,7 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
-    build = "make BUILD_FROM_SOURCE=true",
+    -- build = "make BUILD_FROM_SOURCE=true",
     opts = {
       provider = "openai",
       openai = {

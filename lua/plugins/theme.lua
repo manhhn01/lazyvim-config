@@ -9,6 +9,8 @@ return {
         local custom_highlights = {
           FloatBorder = { bg = colors.mantle },
 
+          PmenuExtra = { bg = "NONE" },
+
           -- Completion menu
           CmpBorder = { fg = colors.surface1 },
           CmpDocBorder = { fg = colors.surface1 },

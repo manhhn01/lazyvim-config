@@ -69,7 +69,7 @@ map({ "n", "v" }, "<leader>i", function()
   Util.format({ force = true })
 end, { desc = "Format" })
 
--- Telescope
+-- Picker
 map("n", "<leader>fd", "<leader>sd", { remap = true })
 map("n", "<leader>fw", "<leader>sg", { remap = true })
 map("n", "<leader>fW", "<leader>sG", { remap = true })
