@@ -7,13 +7,14 @@ return {
       transparent_background = vim.g.transparent or false,
       custom_highlights = function(colors)
         local custom_highlights = {
-          FloatBorder = { bg = colors.mantle },
+          -- FloatBorder = { bg = colors.mantle },
 
           PmenuExtra = { bg = "NONE" },
 
           -- Completion menu
           CmpBorder = { fg = colors.surface1 },
           CmpDocBorder = { fg = colors.surface1 },
+          BlinkCmpLabelDescription = { link = "Comment" },
           BlinkCmpMenu = { bg = colors.base },
           BlinkCmpMenuSelection = { bg = colors.surface0 },
           BlinkCmpMenuBorder = { fg = colors.surface1 },

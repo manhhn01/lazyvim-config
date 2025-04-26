@@ -2,6 +2,7 @@ return {
   {
     "nvimtools/none-ls.nvim",
     event = "VeryLazy",
+    enabled = false,
     dependencies = { "davidmh/cspell.nvim" },
     opts = function(_, opts)
       local cspell = require("cspell")

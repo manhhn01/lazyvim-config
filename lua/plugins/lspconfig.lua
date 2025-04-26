@@ -36,8 +36,11 @@ return {
         },
         vtsls = {
           root_dir = get_root_tsconfig,
+
           settings = {
-            completitions = {
+            typescript = { format = { indentSize = 2 } },
+            typescriptreact = { format = { indentSize = 2 } },
+            completions = {
               completeFunctionCalls = false,
             },
           },

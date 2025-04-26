@@ -56,7 +56,7 @@ return {
       editor = {
         image = nil,
         client = "neovim",
-        tooltip = "hyperextensible Vim-based text editor",
+        tooltip = vim.g.neovide and "neovide" or "hyperextensible Vim-based text editor",
       },
       display = {
         display = {
@@ -107,16 +107,6 @@ return {
         terminal = function(opts)
           return "Running commands in " .. opts.name
         end,
-      },
-      buttons = {
-        {
-          label = function(opts)
-            return "View Repository"
-          end,
-          url = function(opts)
-            return "https://www.youtube.com/watch?v=iik25wqIuFo"
-          end,
-        },
       },
     },
   },

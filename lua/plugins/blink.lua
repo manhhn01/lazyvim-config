@@ -5,7 +5,7 @@ return {
   event = "VeryLazy",
   opts = {
     enabled = function()
-      return not vim.tbl_contains({ "AvanteInput", "minifiles" }, vim.bo.filetype)
+      return not vim.tbl_contains({ "AvanteInput", "AvantePromptInput", "minifiles" }, vim.bo.filetype)
         and vim.bo.buftype ~= "prompt"
         and vim.b.completion ~= false
     end,

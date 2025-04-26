@@ -1,6 +1,7 @@
 return {
   {
     "Exafunction/codeium.nvim",
+    commit = "2b10c17c46e43154ebd058f6b3d3842dd8fa7cab",
     enabled = true,
     cmd = "Codeium",
     event = "BufReadPost",
@@ -90,54 +91,16 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
-    -- build = "make BUILD_FROM_SOURCE=true",
+    build = "make",
+    version = false,
     opts = {
       provider = "openai",
       openai = {
         endpoint = "https://api.openai.com/v1",
         model = "gpt-4o-mini",
         timeout = 30000,
-        temperature = 0.4,
-        max_tokens = 8000,
-      },
-      gemini = {
-        endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
-        model = "gemini-1.5-flash-latest",
-        timeout = 30000,
-        temperature = 0.4,
-        max_tokens = 8000,
-        ["local"] = false,
-      },
-      mappings = {
-        ask = "<leader>aa",
-        edit = "<leader>ae",
-        refresh = "<leader>ar",
-        diff = {
-          ours = "co",
-          theirs = "ct",
-          none = "c0",
-          both = "cb",
-          next = "]x",
-          prev = "[x",
-        },
-        jump = {
-          next = "]]",
-          prev = "[[",
-        },
-        submit = {
-          normal = "<CR>",
-          insert = "<C-s>",
-        },
-        toggle = {
-          debug = "<leader>ad",
-          hint = "<leader>ah",
-        },
-      },
-      hints = { enabled = true },
-      windows = {
-        sidebar_header = {
-          rounded = false,
-        },
+        temperature = 0.2,
+        --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
       },
     },
   },
@@ -252,8 +215,7 @@ return {
         end,
         mode = { "n", "x" },
         desc = "Code companion action",
-      }
-
+      },
     },
     config = function(_, opts)
       require("codecompanion").setup(opts)

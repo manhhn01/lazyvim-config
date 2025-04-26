@@ -77,10 +77,10 @@ return {
 
         -- Ensure title padding
         if config.title[#config.title][1] ~= " " then
-          table.insert(config.title, { " ", "NormalFloat" })
+          table.insert(config.title, { " ", "MiniFilesTitle" })
         end
         if config.title[1][1] ~= " " then
-          table.insert(config.title, 1, { " ", "NormalFloat" })
+          table.insert(config.title, 1, { " ", "MiniFilesTitle" })
         end
 
         vim.api.nvim_win_set_config(win_id, config)

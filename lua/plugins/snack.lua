@@ -66,7 +66,7 @@ return {
       },
 
       scroll = {
-        enabled = true,
+        enabled = false,
       },
 
       indent = {
