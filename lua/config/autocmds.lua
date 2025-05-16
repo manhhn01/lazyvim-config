@@ -45,3 +45,17 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set({ "n", "o" }, "q", ":close<CR>", { buffer = true, silent = true })
   end,
 })
+
+vim.api.nvim_create_autocmd("RecordingEnter", {
+  group = augroup("recording_notify"),
+  callback = function(ctx)
+    vim.notify("Recording macro for " .. vim.fn.reg_recording(), "info", { title = "LazyVim" })
+  end,
+})
+
+vim.api.nvim_create_autocmd("RecordingLeave", {
+  group = augroup("recording_notify"),
+  callback = function(ctx)
+    vim.notify("Stopped recording macro", "info", { title = "LazyVim" })
+  end,
+})

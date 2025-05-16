@@ -49,8 +49,7 @@ opt.spelloptions = { "camel", "noplainbuffer" }
 
 opt.pumblend = 0
 
--- Simple statusline
-opt.statusline = "%#StatusLineFile#%f%* %#StatusLineNormal#%y %m%r %h%=%([%{&fenc==''?&enc:&fenc}] [L%l:%c %P]%)"
+opt.statusline = "%#StatusLineFile#%f %#StatusLineNormal#%y %m%r %h%=%([%{&fenc==''?&enc:&fenc}] [L%l:%c %P]%)"
 
 vim.g.rustaceanvim = {
   server = {
@@ -66,11 +65,13 @@ vim.g.rustaceanvim = {
 }
 
 if vim.g.neovide then
-  vim.o.guifont = "VictorMono Nerd Font:h15:w1:#e-subpixelantialias:#h-slight"
+  vim.o.guifont = "VictorMono Nerd Font:h12"
   vim.g.neovide_input_use_logo = true
   vim.g.neovide_input_macos_option_key_is_meta = "both"
   vim.g.neovide_window_blurred = false
   vim.g.neovide_transparency = 1
+  vim.g.neovide_text_gamma = 0.8
+  vim.g.neovide_text_contrast = 0.2
   vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })

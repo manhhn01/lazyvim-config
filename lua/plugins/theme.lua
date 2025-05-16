@@ -82,7 +82,7 @@ return {
           },
 
           MiniFilesTitleFocused = {
-            fg = colors.maroon,
+            fg = colors.red,
           },
 
           FloatTitle = {

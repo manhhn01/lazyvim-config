@@ -113,9 +113,17 @@ map("v", "K", ":m '<-2<CR>gv=gv", {
 })
 
 -- Reset terminal buffer
-map("t", "<c-l>", function ()
+map("t", "<c-l>", function()
   vim.cmd(":set scrollback=1 | sleep 100m | set scrollback=10000")
 end, { desc = "Reset terminal buffer" })
+
+-- When lines are on, text is off.
+map("", "<leader>bl", function()
+  vim.diagnostic.config({
+  virtual_lines = not vim.diagnostic.config().virtual_lines and { current_line = true } or false,
+  virtual_text = not vim.diagnostic.config().virtual_text and { prefix = "" } or false,
+  })
+end, { desc = "Toggle diagnostic [l]ines" })
 
 -- Some abbreviations for common typos
 vim.cmd("cnoreabbrev W! w!")

@@ -84,7 +84,6 @@ return {
 
   {
     "yetone/avante.nvim",
-    enabled = true,
     event = "VeryLazy",
     dependencies = {
       "echasnovski/mini.icons",
@@ -94,7 +93,10 @@ return {
     build = "make",
     version = false,
     opts = {
-      provider = "openai",
+      provider = "ollama",
+      ollama = {
+        model = "mistral:7b",
+      },
       openai = {
         endpoint = "https://api.openai.com/v1",
         model = "gpt-4o-mini",
@@ -102,6 +104,14 @@ return {
         temperature = 0.2,
         --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
       },
+    },
+    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+    build = "make",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
     },
   },
 
