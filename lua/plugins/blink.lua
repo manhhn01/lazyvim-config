@@ -14,6 +14,11 @@ return {
       kind_icons = kind.vscode_kind,
     },
     completion = {
+      accept = {
+        auto_brackets = {
+          enabled = false,
+        },
+      },
       ghost_text = {
         enabled = false,
       },

@@ -118,12 +118,12 @@ map("t", "<c-l>", function()
 end, { desc = "Reset terminal buffer" })
 
 -- When lines are on, text is off.
-map("", "<leader>bl", function()
+map("", "<leader>cd", function()
   vim.diagnostic.config({
   virtual_lines = not vim.diagnostic.config().virtual_lines and { current_line = true } or false,
   virtual_text = not vim.diagnostic.config().virtual_text and { prefix = "" } or false,
   })
-end, { desc = "Toggle diagnostic [l]ines" })
+end, { desc = "Toggle diagnostic lines" })
 
 -- Some abbreviations for common typos
 vim.cmd("cnoreabbrev W! w!")

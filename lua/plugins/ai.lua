@@ -93,25 +93,19 @@ return {
     build = "make",
     version = false,
     opts = {
-      provider = "ollama",
-      ollama = {
-        model = "mistral:7b",
+      provider = "openai",
+      providers = {
+        ollama = {
+          model = "qwen2.5-coder:7b",
+        },
+        openai = {
+          endpoint = "https://api.openai.com/v1",
+          model = "gpt-4o-mini",
+          timeout = 30000,
+          temperature = 0.2,
+          --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+        },
       },
-      openai = {
-        endpoint = "https://api.openai.com/v1",
-        model = "gpt-4o-mini",
-        timeout = 30000,
-        temperature = 0.2,
-        --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
-      },
-    },
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    build = "make",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
     },
   },
 
