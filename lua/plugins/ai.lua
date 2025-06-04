@@ -100,10 +100,11 @@ return {
         },
         openai = {
           endpoint = "https://api.openai.com/v1",
-          model = "gpt-4o-mini",
+          model = "gpt-4.1-mini",
           timeout = 30000,
-          temperature = 0.2,
-          --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+          extra_request_body = {
+            temperature = 0.2,
+          },
         },
       },
     },
