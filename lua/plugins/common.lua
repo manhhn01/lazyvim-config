@@ -189,6 +189,7 @@ return {
     dependencies = {
       "nvzone/volt",
     },
-    cmd = { "Typr" },
+    opts = {},
+    cmd = { "Typr", "TyprStats" },
   },
 }

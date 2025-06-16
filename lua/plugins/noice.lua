@@ -56,16 +56,6 @@ return {
         },
         opts = { skip = true },
       },
-
-      -- {
-      --   filter = {
-      --     event = "notify",
-      --     any = {
-      --       { find = "Cannot find provider for the feature" },
-      --     },
-      --   },
-      --   opts = { skip = true },
-      -- },
       {
         filter = {
           event = "msg_show",

@@ -19,6 +19,9 @@ return {
             snacks_input = false,
             snacks_picker_input = false,
             AvanteInput = false,
+            typr = false,
+            sh = false,
+            yaml = false,
           },
           key_bindings = {
             accept = "<C-u>",

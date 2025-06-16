@@ -21,8 +21,6 @@ local unmap = function(mode, key)
   vim.keymap.del(modes, key)
 end
 
-map("n", "ga", "ggVG", { desc = "Select all" })
-
 -- Move to window using the s + hjkl keys
 map("n", "sh", "<C-w>h", { desc = "Go to left window" })
 map("n", "sj", "<C-w>j", { desc = "Go to lower window" })

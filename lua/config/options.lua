@@ -64,6 +64,9 @@ vim.g.rustaceanvim = {
   },
 }
 
+------------------------------
+-- NeoVide
+------------------------------
 if vim.g.neovide then
   vim.o.guifont = "VictorMono Nerd Font:h12"
   vim.g.neovide_input_use_logo = true
@@ -88,6 +91,9 @@ else
   opt.guicursor = "i:ver1,c:ver1,a:blinkon4,a:blinkwait1" -- blinking cursor
 end
 
+------------------------------
+-- Backup and Undo Directories
+------------------------------
 local BACKUPDIR = vim.fn.expand("~") .. "/.vim/backup"
 local UNDODIR = vim.fn.expand("~") .. "/.vim/undo"
 
@@ -101,3 +107,19 @@ end
 
 opt.backupdir = BACKUPDIR
 opt.undodir = UNDODIR
+
+------------------------------
+-- Diff saved buffer
+-- https://www.reddit.com/r/neovim/comments/15ue6vh/comment/jwpbbvr
+------------------------------
+vim.api.nvim_create_user_command("DiffOrig", function()
+  local scratch_buffer = vim.api.nvim_create_buf(false, true)
+  local current_ft = vim.bo.filetype
+  vim.cmd("vertical sbuffer" .. scratch_buffer)
+  vim.bo[scratch_buffer].filetype = current_ft
+  vim.cmd("read ++edit #") -- load contents of previous buffer into scratch_buffer
+  vim.cmd.normal('1G"_d_') -- delete extra newline at top of scratch_buffer without overriding register
+  vim.cmd.diffthis() -- scratch_buffer
+  vim.cmd.wincmd("p")
+  vim.cmd.diffthis() -- current buffer
+end, {})
