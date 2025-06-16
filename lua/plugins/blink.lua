@@ -10,6 +10,15 @@ return {
         and vim.b.completion ~= false
     end,
     keymap = { preset = "default" },
+    sources = {
+      providers = {
+        lsp = {
+          opts = {
+            tailwind_color_icon = kind.vscode_kind.Color,
+          },
+        },
+      },
+    },
     appearance = {
       kind_icons = kind.vscode_kind,
     },

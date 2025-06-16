@@ -15,12 +15,8 @@ return {
     version = "*",
     opts = {
       diagnostics = {
-        virtual_text = false,
-        -- virtual_text = {
-        --   prefix = "",
-        -- },
-        virtual_lines = {
-          current_line = true,
+        virtual_text = {
+          prefix = "",
         },
         float = {
           border = vim.g.transparent and "rounded" or nil,
