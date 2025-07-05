@@ -128,6 +128,60 @@ return {
   },
 
   {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    keys = {
+      {
+        "<c-t>",
+        function()
+          vim.cmd("ToggleTerm direction=horizontal name='Default'")
+        end,
+        mode = { "n", "x", "t", "i" },
+      },
+      {
+        "<c-1>",
+        function()
+          vim.cmd("1 ToggleTerm size=40 direction=float name='Default'")
+        end,
+        mode = { "n", "x", "t", "i" },
+      },
+      {
+        "<c-2>",
+        function()
+          vim.cmd("2 ToggleTerm size=40 direction=float name='ToggleTerm 2'")
+        end,
+        mode = { "n", "x", "t", "i" },
+      },
+    },
+    opts = {
+      open_mapping = nil,
+      shell = vim.fn.executable("fish") == 1 and "fish" or vim.o.shell,
+      float_opts = {
+        title_pos = "center",
+        border = "rounded",
+      },
+      highlights = {
+        FloatBorder = {
+          link = "ToggleTermNormalFloatBorder",
+        },
+        NormalFloat = {
+          link = "ToggleTermNormalFloat",
+        },
+      },
+    },
+  },
+
+  {
+    "mikesmithgh/kitty-scrollback.nvim",
+    cmd = { "KittyScrollbackGenerateKittens", "KittyScrollbackCheckHealth" },
+    event = { "User KittyScrollbackLaunch" },
+    version = "*",
+    config = function()
+      require("kitty-scrollback").setup()
+    end,
+  },
+
+  {
     "MeanderingProgrammer/render-markdown.nvim",
     ft = { "markdown", "codecompanion", "Avante" },
     opts = function(_, opts)
