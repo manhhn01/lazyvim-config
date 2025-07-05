@@ -88,6 +88,7 @@ return {
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
+    enabled = false,
     dependencies = {
       "echasnovski/mini.icons",
       "nvim-lua/plenary.nvim",
@@ -98,15 +99,12 @@ return {
     opts = {
       provider = "openai",
       providers = {
-        ollama = {
-          model = "qwen2.5-coder:7b",
-        },
         openai = {
           endpoint = "https://api.openai.com/v1",
-          model = "gpt-4.1-mini",
-          timeout = 30000,
+          model = "gpt-4o",
+          -- disable_tools = { "attempt_completion" },
           extra_request_body = {
-            temperature = 0.2,
+            temperature = 0.5,
           },
         },
       },
@@ -115,7 +113,7 @@ return {
 
   {
     "olimorris/codecompanion.nvim",
-    enabled = false,
+    enabled = true,
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       { "MeanderingProgrammer/render-markdown.nvim" },
@@ -160,8 +158,8 @@ return {
         chat = {
           adapter = "openai",
           roles = {
-            llm = "CodeCompanion ✨", -- The markdown header content for the LLM's responses
-            user = "Me", -- The markdown header for your questions
+            llm = "CodeCompanion ✨",
+            user = "Me",
           },
           keymaps = {
             close = {
@@ -184,7 +182,7 @@ return {
           return require("codecompanion.adapters").extend("openai", {
             schema = {
               model = {
-                default = "gpt-4o-mini",
+                default = "gpt-4o",
               },
             },
           })

@@ -26,9 +26,9 @@ return {
       base = "right",
       column = 1,
       signs_column = 0,
-      diagnostics_error_symbol = "x",
-      diagnostics_warn_symbol = "!",
-      diagnostics_hint_symbol = "i",
+      -- diagnostics_error_symbol = "x",
+      -- diagnostics_warn_symbol = "!",
+      -- diagnostics_hint_symbol = "i",
     },
   },
 
