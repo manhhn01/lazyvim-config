@@ -172,16 +172,6 @@ return {
   },
 
   {
-    "mikesmithgh/kitty-scrollback.nvim",
-    cmd = { "KittyScrollbackGenerateKittens", "KittyScrollbackCheckHealth" },
-    event = { "User KittyScrollbackLaunch" },
-    version = "*",
-    config = function()
-      require("kitty-scrollback").setup()
-    end,
-  },
-
-  {
     "MeanderingProgrammer/render-markdown.nvim",
     ft = { "markdown", "codecompanion", "Avante" },
     opts = function(_, opts)

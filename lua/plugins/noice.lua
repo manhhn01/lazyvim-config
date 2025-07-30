@@ -94,6 +94,11 @@ return {
         hover = {
           silent = true,
         },
+        signature = {
+          auto_open = {
+            enabled = false,
+          },
+        },
       },
       presets = {
         bottom_search = false,

@@ -47,14 +47,14 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("RecordingEnter", {
-  group = augroup("recording_notify"),
+  group = augroup("recording_notify_enter"),
   callback = function(ctx)
     vim.notify("Recording macro for " .. vim.fn.reg_recording(), "info", { title = "LazyVim" })
   end,
 })
 
 vim.api.nvim_create_autocmd("RecordingLeave", {
-  group = augroup("recording_notify"),
+  group = augroup("recording_notify_leave"),
   callback = function(ctx)
     vim.notify("Stopped recording macro", "info", { title = "LazyVim" })
   end,
