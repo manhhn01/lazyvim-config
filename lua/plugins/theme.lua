@@ -14,26 +14,13 @@ return {
         local custom_highlights = {
           -- FloatBorder = { bg = colors.mantle },
 
-          PmenuExtra = { bg = "NONE" },
-
-          -- Completion menu
           BlinkCmpLabelDescription = { link = "Comment" },
-          BlinkCmpMenu = transparent and { bg = "NONE" } or { bg = colors.base },
-          BlinkCmpMenuSelection = transparent and { bg = "NONE", fg = colors.blue } or { bg = colors.surface0 },
-          BlinkCmpMenuBorder = transparent and { fg = colors.overlay0 } or { fg = colors.surface1 },
-
-          TelescopeNormal = { link = "NormalFloat" },
 
           TreesitterContextBottom = { style = {} },
 
           IblScope = { fg = colors.surface2 },
 
           BufferLineIndicatorSelected = { fg = colors.blue },
-
-          WindowPickerStatusLineNC = {
-            fg = "#000000",
-            bg = colors.blue,
-          },
 
           SpellBad = {
             sp = colors.blue,
@@ -65,15 +52,6 @@ return {
             fg = colors.lavender,
           },
 
-          ToggleTermNormalFloat = {
-            link = "NormalFloat",
-          },
-
-          ToggleTermNormalFloatBorder = {
-            bg = "NONE",
-            fg = colors.blue,
-          },
-
           InclineBg = {
             bg = colors.mantle,
           },
@@ -85,14 +63,6 @@ return {
           NeoTreeIndentMarker = {
             fg = colors.surface1,
           },
-
-          -- FIXME: Currently these not work with solid float
-          -- MiniFilesTitleFocused = {
-          --   fg = colors.red,
-          -- },
-          -- FloatTitle = {
-          --   fg = colors.blue,
-          -- },
 
           StatusLineFile = {
             fg = colors.blue,

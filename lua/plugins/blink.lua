@@ -32,8 +32,6 @@ return {
         enabled = false,
       },
       menu = {
-        border = "rounded",
-        winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
         draw = {
           gap = 2,
           columns = { { "label", "label_description", gap = 2 }, { "kind_icon", "kind" } },
@@ -45,12 +43,12 @@ return {
           },
         },
       },
-      documentation = {
-        window = {
-          border = "rounded",
-          winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-        },
-      },
+      -- documentation = {
+      --   window = {
+      --     border = "rounded",
+      --     winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+      --   },
+      -- },
     },
   },
 }
