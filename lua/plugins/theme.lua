@@ -86,13 +86,13 @@ return {
             fg = colors.surface1,
           },
 
-          MiniFilesTitleFocused = {
-            fg = colors.red,
-          },
-
-          FloatTitle = {
-            fg = colors.blue,
-          },
+          -- FIXME: Currently these not work with solid float
+          -- MiniFilesTitleFocused = {
+          --   fg = colors.red,
+          -- },
+          -- FloatTitle = {
+          --   fg = colors.blue,
+          -- },
 
           StatusLineFile = {
             fg = colors.blue,

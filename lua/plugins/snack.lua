@@ -24,10 +24,6 @@ return {
   opts = function(_, opts)
     ---@type snacks.config
     local config = {
-      terminal = {
-        enabled = false,
-      },
-
       notifier = {
         enabled = true,
         timeout = 3000,
