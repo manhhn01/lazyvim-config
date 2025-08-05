@@ -22,6 +22,10 @@ return {
 
           BufferLineIndicatorSelected = { fg = colors.blue },
 
+          DiagnosticFloatingWarn = {
+            bg = colors.mantle, -- set background color for float warn (solid)
+          },
+
           SpellBad = {
             sp = colors.blue,
             style = { "undercurl" },
