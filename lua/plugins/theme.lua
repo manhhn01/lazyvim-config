@@ -5,19 +5,22 @@ return {
     name = "catppuccin",
     opts = {
       transparent_background = vim.g.transparent or false,
+      float = {
+        transparent = false,
+        solid = true,
+      },
       custom_highlights = function(colors)
+        local transparent = vim.g.transparent or false
         local custom_highlights = {
           -- FloatBorder = { bg = colors.mantle },
 
           PmenuExtra = { bg = "NONE" },
 
           -- Completion menu
-          CmpBorder = { fg = colors.surface1 },
-          CmpDocBorder = { fg = colors.surface1 },
           BlinkCmpLabelDescription = { link = "Comment" },
-          BlinkCmpMenu = { bg = colors.base },
-          BlinkCmpMenuSelection = { bg = colors.surface0 },
-          BlinkCmpMenuBorder = { fg = colors.surface1 },
+          BlinkCmpMenu = transparent and { bg = "NONE" } or { bg = colors.base },
+          BlinkCmpMenuSelection = transparent and { bg = "NONE", fg = colors.blue } or { bg = colors.surface0 },
+          BlinkCmpMenuBorder = transparent and { fg = colors.overlay0 } or { fg = colors.surface1 },
 
           TelescopeNormal = { link = "NormalFloat" },
 
@@ -52,7 +55,9 @@ return {
             style = { "undercurl" },
           },
 
-          WinSeparator = {
+          WinSeparator = transparent and {
+            fg = colors.overlay0,
+          } or {
             fg = colors.surface0,
           },
 
