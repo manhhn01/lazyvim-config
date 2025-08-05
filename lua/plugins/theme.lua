@@ -87,7 +87,7 @@ return {
               bg = "NONE",
             },
             BlinkCmpMenu = { bg = colors.mantle },
-            BlinkCmpMenuSelection = { link = "LineNr" },
+            BlinkCmpMenuSelection = { bg = colors.surface1 },
           })
         else
           return vim.tbl_extend("force", custom_highlights, {
