@@ -77,8 +77,8 @@ return {
           },
         }
 
-        if vim.g.transparent then
-          vim.list_extend(custom_highlights, {
+        if transparent then
+          return vim.tbl_extend("force", custom_highlights, {
             -- custom highlight for transparent_background
             Clear = {
               bg = "NONE",
@@ -86,16 +86,16 @@ return {
             TreesitterContextLineNumber = {
               bg = "NONE",
             },
+            BlinkCmpMenu = { bg = colors.mantle },
+            BlinkCmpMenuSelection = { link = "LineNr" },
           })
         else
-          vim.list_extend(custom_highlights, {
+          return vim.tbl_extend("force", custom_highlights, {
             TreesitterContextLineNumber = {
               bg = colors.mantle,
             },
           })
         end
-
-        return custom_highlights
       end,
       highlight_overrides = {},
       dim_inactive = {
