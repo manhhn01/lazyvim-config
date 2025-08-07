@@ -26,6 +26,11 @@ return {
             bg = colors.mantle, -- set background color for float warn (solid)
           },
 
+          LazyGitBorder = {
+            bg = colors.mantle,
+            fg = colors.overlay0,
+          },
+
           SpellBad = {
             sp = colors.blue,
             style = { "undercurl" },

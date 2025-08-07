@@ -22,7 +22,7 @@ return {
     },
   },
   opts = function(_, opts)
-    ---@type snacks.config
+    ---@type snacks.Config
     local config = {
       notifier = {
         enabled = true,
@@ -52,6 +52,21 @@ return {
       },
 
       input = {},
+
+      lazygit = {
+        theme = {
+          [241] = { fg = "Special" },
+          activeBorderColor = { fg = "MatchParen", bold = true },
+          cherryPickedCommitBgColor = { fg = "Identifier" },
+          cherryPickedCommitFgColor = { fg = "Function" },
+          defaultFgColor = { fg = "Normal" },
+          optionsTextColor = { fg = "Function" },
+          searchingActiveBorderColor = { fg = "MatchParen", bold = true },
+          selectedLineBgColor = { bg = "Visual" },
+          unstagedChangesColor = { fg = "DiagnosticError" },
+          inactiveBorderColor = { fg = "LazyGitBorder" },
+        },
+      },
 
       dashboard = {
         enabled = false,
