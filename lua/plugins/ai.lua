@@ -120,9 +120,17 @@ return {
     },
     event = "BufReadPost",
     opts = {
+      opts = {
+        -- Set debug logging
+        log_level = "DEBUG",
+      },
       display = {
         diff = {
-          enabled = false,
+          enabled = true,
+          close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
+          layout = "vertical", -- vertical|horizontal split for default provider
+          opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
+          provider = "mini_diff", -- default|mini_diff
         },
         chat = {
           window = {
@@ -147,7 +155,7 @@ return {
           },
           intro_message = "✨ Press ? for options",
           start_in_insert_mode = true,
-          show_header_separator = false,
+          show_header_separator = true,
           ---@param adapter CodeCompanion.Adapter
           token_count = function(tokens, adapter) -- The function to display the token count
             return " " .. tokens .. " tokens"
@@ -207,20 +215,13 @@ return {
         desc = "Code companion action",
       },
       {
-        "<leader>ac",
-        function()
-          vim.cmd("CodeCompanionAction")
-        end,
-        mode = { "n", "x" },
-        desc = "Code companion action",
-      },
-      {
         "<leader>ae",
         function()
-          vim.cmd("CodeCompanion /explain")
+          local message = vim.fn.input("Enter message: ")
+          vim.cmd("CodeCompanion " .. message)
         end,
         mode = { "n", "x" },
-        desc = "Code companion action",
+        desc = "Code companion inline edit",
       },
     },
     config = function(_, opts)

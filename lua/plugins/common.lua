@@ -168,4 +168,41 @@ return {
     opts = {},
     cmd = { "Typr", "TyprStats" },
   },
+  {
+    "mvllow/modes.nvim",
+    lazy = false,
+    opts = {
+      -- Set opacity for cursorline and number background
+      line_opacity = 0.15,
+
+      -- Enable cursor highlights
+      set_cursor = true,
+
+      -- Enable cursorline initially, and disable cursorline for inactive windows
+      -- or ignored filetypes
+      set_cursorline = true,
+
+      -- Enable line number highlights to match cursorline
+      set_number = true,
+
+      -- Enable sign column highlights to match cursorline
+      set_signcolumn = true,
+
+      -- Disable modes highlights for specified filetypes
+      -- or enable with prefix "!" if otherwise disabled (please PR common patterns)
+      -- Can also be a function fun():boolean that disables modes highlights when true
+      ignore = { "NvimTree", "TelescopePrompt", "!minifiles" },
+    },
+  },
+
+  {
+    "echasnovski/mini.diff",
+    config = function()
+      local diff = require("mini.diff")
+      diff.setup({
+        -- Disabled by default
+        source = diff.gen_source.none(),
+      })
+    end,
+  },
 }
