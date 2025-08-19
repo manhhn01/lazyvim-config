@@ -30,6 +30,10 @@ return {
         style = "compact",
       },
 
+      terminal = {
+        shell = "fish",
+      },
+
       win = {
         backdrop = 100, -- disable backdrop
       },
