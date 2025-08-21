@@ -48,7 +48,6 @@ return {
   {
     "vyfor/cord.nvim",
     build = ":Cord update",
-    event = "VeryLazy",
     opts = {
       idle = {
         enabled = false,
@@ -57,11 +56,6 @@ return {
         image = nil,
         client = "neovim",
         tooltip = vim.g.neovide and "neovide" or "hyperextensible Vim-based text editor",
-      },
-      display = {
-        display = {
-          theme = "pastel",
-        },
       },
       text = {
         editing = function(opts)

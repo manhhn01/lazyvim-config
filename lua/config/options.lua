@@ -87,8 +87,9 @@ if vim.g.neovide then
 
   vim.g.neovide_text_gamma = 0.8
   vim.g.neovide_text_contrast = 0.2
-
   vim.g.transparent = false
+
+  vim.g.neovide_cursor_hack = true
 else
   vim.g.transparent = os.getenv("TRANSPARENT") == "1" or false
 
