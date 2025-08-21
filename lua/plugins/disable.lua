@@ -6,7 +6,8 @@ local disabled = {
   "L3MON4D3/LuaSnip",
   "friendly-snippets",
   "nvim-snippets",
-  "nvim-neo-tree/neo-tree.nvim"
+  "nvim-neo-tree/neo-tree.nvim",
+  "akinsho/bufferline.nvim",
 }
 
 local mapped = {}
