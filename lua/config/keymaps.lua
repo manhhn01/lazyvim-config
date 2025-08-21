@@ -34,8 +34,12 @@ map("n", "<C-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width
 map("n", "<C-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 
 -- Bufferline
-map("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+-- map("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+-- map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+
+-- Buffer
+map("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+map("n", "<S-Tab>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 
 -- Revert to original keymaps
 unmap("n", "n")
