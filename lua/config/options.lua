@@ -49,8 +49,35 @@ opt.spelloptions = { "camel", "noplainbuffer" }
 
 opt.pumblend = 0
 
-opt.statusline = "%#StatusLineFile#%f %#StatusLineNormal#%y %m%r %h%=%([%{&fenc==''?&enc:&fenc}] [L%l:%c %P]%)"
+------------------------------
+-- Status line
+------------------------------
+local mode_map = {
+  n = "NORMAL",
+  i = "INSERT",
+  v = "VISUAL",
+  V = "V-LINE",
+  [""] = "V-BLOCK",
+  c = "CMD",
+  R = "REPLACE",
+}
 
+function _G.get_mode()
+  local m = vim.fn.mode()
+  return mode_map[m] or m
+end
+
+vim.opt.statusline = table.concat({
+  "%#StatusLineMode# %{v:lua.get_mode()} ",
+  "%#StatusLineFile# %f ",
+  "%#StatusLineNormal# %m%r%h ",
+  "%=",
+  "%#StatusLineEnc#  %{&fenc==''?&enc:&fenc} ",
+  "%#StatusLinePos# %l:%c %P "
+})
+------------------------------
+-- Rust LSP
+------------------------------
 vim.g.rustaceanvim = {
   server = {
     cmd = function()
@@ -68,11 +95,12 @@ vim.g.rustaceanvim = {
 -- NeoVide
 ------------------------------
 if vim.g.neovide then
+  vim.o.winblend = 0
   vim.o.guifont = "Maple Mono NF:h15"
   vim.g.neovide_input_use_logo = true
   vim.g.neovide_input_macos_option_key_is_meta = "both"
   vim.g.neovide_window_blurred = true
-  vim.g.neovide_opacity = 0.9
+  vim.g.neovide_opacity = 0.95
   vim.g.neovide_text_gamma = 0.8
   vim.g.neovide_text_contrast = 0.2
   vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
@@ -80,10 +108,8 @@ if vim.g.neovide then
   vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
   vim.g.neovide_floating_shadow = false
-  vim.g.neovide_floating_blur_amount_x = 2.0
-  vim.g.neovide_floating_blur_amount_y = 2.0
-
-  vim.g.neovide_floating_corner_radius = 0.25
+  vim.g.neovide_floating_blur_amount_x = 10.0
+  vim.g.neovide_floating_blur_amount_y = 10.0
 
   vim.g.neovide_text_gamma = 0.8
   vim.g.neovide_text_contrast = 0.2

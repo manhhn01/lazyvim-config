@@ -12,6 +12,13 @@ return {
       custom_highlights = function(colors)
         local transparent = vim.g.transparent or false
         local custom_highlights = {
+          -- statusline blocks
+          StatusLineMode = { fg = colors.base, bg = colors.mauve, bold = true },
+          StatusLineFile = { fg = colors.text, bg = colors.surface0 },
+          StatusLineNormal = { fg = colors.overlay0, bg = colors.mantle },
+          StatusLineEnc = { fg = colors.overlay0, bg = colors.mantle },
+          StatusLinePos = { fg = colors.overlay0, bg = colors.mantle},
+
           -- FloatBorder = { bg = colors.mantle },
 
           BlinkCmpLabelDescription = { link = "Comment" },
@@ -71,14 +78,6 @@ return {
 
           NeoTreeIndentMarker = {
             fg = colors.surface1,
-          },
-
-          StatusLineFile = {
-            fg = colors.blue,
-          },
-
-          StatusLineNormal = {
-            fg = colors.overlay0,
           },
         }
 
