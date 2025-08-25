@@ -57,6 +57,10 @@ return {
 
       input = {},
 
+      scratch = {
+        zindex = 50,
+      },
+
       lazygit = {
         theme = {
           [241] = { fg = "Special" },
