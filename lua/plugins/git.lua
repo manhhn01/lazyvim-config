@@ -102,5 +102,8 @@ return {
       "sindrets/diffview.nvim", -- optional - Diff integration
       "folke/snacks.nvim", -- optional
     },
+    keys = {
+      { "<leader>gn", "<cmd>Neogit<cr>", desc = "Neogit" },
+    },
   },
 }
