@@ -52,29 +52,35 @@ return {
           SnacksNotifierTitleInfo = { fg = colors.crust, bg = colors.blue },
 
           ------------------------------
+          -- Blink cmp
+          ------------------------------
+          BlinkCmpScrollBarGutter = { bg = colors.base },
+          BlinkCmpScrollBarThumb = { bg = colors.surface0 },
+          BlinkCmpLabelDescription = { link = "Comment" },
+          BlinkCmpMenuSelection = { bg = colors.lavender, fg = colors.crust },
+
+          ------------------------------
           -- Others
           ------------------------------
-          BlinkCmpLabelDescription = { link = "Comment" },
           TreesitterContextBottom = { style = {} },
           IblScope = { fg = colors.surface2 },
           BufferLineIndicatorSelected = { fg = colors.blue },
           DiagnosticFloatingWarn = { bg = colors.mantle },
           LazyGitBorder = { bg = colors.mantle, fg = colors.overlay0 },
           WinSeparator = transparent and { fg = colors.overlay0 } or { fg = colors.surface0 },
+          TreesitterContextLineNumber = { bg = colors.mantle },
         }
 
         if transparent then
           return vim.tbl_extend("force", custom_highlights, {
             Clear = { bg = "NONE" },
             TreesitterContextLineNumber = { bg = "NONE" },
-            BlinkCmpMenu = { bg = colors.mantle },
-            BlinkCmpMenuSelection = { bg = colors.surface1 },
-          })
-        else
-          return vim.tbl_extend("force", custom_highlights, {
-            TreesitterContextLineNumber = { bg = colors.mantle },
+            BlinkCmpMenu = { bg = colors.base },
+            BlinkCmpMenuSelection = { bg = colors.lavender, fg = colors.crust },
           })
         end
+
+        return custom_highlights
       end,
       highlight_overrides = {},
       dim_inactive = {
