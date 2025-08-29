@@ -8,6 +8,7 @@ local disabled = {
   "nvim-snippets",
   "nvim-neo-tree/neo-tree.nvim",
   "akinsho/bufferline.nvim",
+  "nvim-lualine/lualine.nvim",
 }
 
 local mapped = {}

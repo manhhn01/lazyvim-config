@@ -12,92 +12,63 @@ return {
       custom_highlights = function(colors)
         local transparent = vim.g.transparent or false
         local custom_highlights = {
-          -- statusline blocks
+          ------------------------------
+          -- Statusline blocks
+          ------------------------------
           StatusLineMode = { fg = colors.base, bg = colors.mauve, bold = true },
           StatusLineFile = { fg = colors.text, bg = colors.surface0 },
           StatusLineNormal = { fg = colors.overlay0, bg = colors.mantle },
           StatusLineEnc = { fg = colors.overlay0, bg = colors.mantle },
-          StatusLinePos = { fg = colors.overlay0, bg = colors.mantle},
+          StatusLinePos = { fg = colors.overlay0, bg = colors.mantle },
 
-          -- FloatBorder = { bg = colors.mantle },
+          ------------------------------
+          -- Spell underline
+          ------------------------------
+          SpellBad = { sp = colors.blue, style = { "undercurl" } },
+          SpellLocal = { sp = colors.text, style = { "undercurl" } },
+          SpellRare = { sp = colors.green, style = { "undercurl" } },
+          SpellCap = { sp = colors.green, style = { "undercurl" } },
 
+          ------------------------------
+          -- Incline
+          ------------------------------
+          InclineBg = { bg = colors.mantle },
+          InclineNormal = { fg = colors.maroon },
+
+          ------------------------------
+          -- Snacks
+          ------------------------------
+          SnacksInputTitle = { link = "FloatTitle" },
+          SnacksInputBorder = { link = "FloatBorder" },
+          SnacksInputNormal = { link = "NormalFloat" },
+          SnacksNotifierTitleDebug = { fg = colors.crust, bg = colors.teal },
+          SnacksNotifierTitleWarn = { fg = colors.crust, bg = colors.yellow },
+          SnacksNotifierTitleError = { fg = colors.crust, bg = colors.red },
+          SnacksNotifierTitleTrace = { fg = colors.crust, bg = colors.flamingo },
+          SnacksNotifierTitleInfo = { fg = colors.crust, bg = colors.blue },
+
+          ------------------------------
+          -- Others
+          ------------------------------
           BlinkCmpLabelDescription = { link = "Comment" },
-
           TreesitterContextBottom = { style = {} },
-
           IblScope = { fg = colors.surface2 },
-
           BufferLineIndicatorSelected = { fg = colors.blue },
-
-          DiagnosticFloatingWarn = {
-            bg = colors.mantle, -- set background color for float warn (solid)
-          },
-
-          LazyGitBorder = {
-            bg = colors.mantle,
-            fg = colors.overlay0,
-          },
-
-          SpellBad = {
-            sp = colors.blue,
-            style = { "undercurl" },
-          },
-
-          SpellLocal = {
-            sp = colors.text,
-            style = { "undercurl" },
-          },
-
-          SpellRare = {
-            sp = colors.green,
-            style = { "undercurl" },
-          },
-
-          SpellCap = {
-            sp = colors.green,
-            style = { "undercurl" },
-          },
-
-          WinSeparator = transparent and {
-            fg = colors.overlay0,
-          } or {
-            fg = colors.surface0,
-          },
-
-          CmpItemKindCodeium = {
-            fg = colors.lavender,
-          },
-
-          InclineBg = {
-            bg = colors.mantle,
-          },
-
-          InclineNormal = {
-            fg = colors.maroon,
-          },
-
-          NeoTreeIndentMarker = {
-            fg = colors.surface1,
-          },
+          DiagnosticFloatingWarn = { bg = colors.mantle },
+          LazyGitBorder = { bg = colors.mantle, fg = colors.overlay0 },
+          WinSeparator = transparent and { fg = colors.overlay0 } or { fg = colors.surface0 },
         }
 
         if transparent then
           return vim.tbl_extend("force", custom_highlights, {
-            -- custom highlight for transparent_background
-            Clear = {
-              bg = "NONE",
-            },
-            TreesitterContextLineNumber = {
-              bg = "NONE",
-            },
+            Clear = { bg = "NONE" },
+            TreesitterContextLineNumber = { bg = "NONE" },
             BlinkCmpMenu = { bg = colors.mantle },
             BlinkCmpMenuSelection = { bg = colors.surface1 },
           })
         else
           return vim.tbl_extend("force", custom_highlights, {
-            TreesitterContextLineNumber = {
-              bg = colors.mantle,
-            },
+            TreesitterContextLineNumber = { bg = colors.mantle },
           })
         end
       end,

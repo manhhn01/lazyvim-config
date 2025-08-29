@@ -37,81 +37,6 @@ return {
   },
 
   {
-    "zbirenbaum/copilot.lua",
-    enabled = false,
-    event = "VeryLazy",
-    opts = {
-      panel = {
-        enabled = true,
-        auto_refresh = false,
-        keymap = {
-          jump_prev = "[[",
-          jump_next = "]]",
-          accept = "<CR>",
-          refresh = "gr",
-          open = "<M-CR>",
-        },
-        layout = {
-          position = "bottom",
-          ratio = 0.4,
-        },
-      },
-      suggestion = {
-        enabled = true,
-        auto_trigger = true,
-        debounce = 150,
-        keymap = {
-          accept = "<C-u>",
-          accept_word = false,
-          accept_line = false,
-          next = "<M-]>",
-          prev = "<M-[>",
-          dismiss = "<C-]>",
-        },
-      },
-      filetypes = {
-        yaml = false,
-        markdown = false,
-        help = false,
-        gitcommit = false,
-        gitrebase = false,
-        hgcommit = false,
-        svn = false,
-        cvs = false,
-        ["."] = false,
-      },
-      copilot_node_command = "node", -- Node.js version must be > 16.x
-      server_opts_overrides = {},
-    },
-  },
-
-  {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    enabled = false,
-    dependencies = {
-      "echasnovski/mini.icons",
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    build = "make",
-    version = false,
-    opts = {
-      provider = "openai",
-      providers = {
-        openai = {
-          endpoint = "https://api.openai.com/v1",
-          model = "gpt-4o",
-          -- disable_tools = { "attempt_completion" },
-          extra_request_body = {
-            temperature = 0.5,
-          },
-        },
-      },
-    },
-  },
-
-  {
     "olimorris/codecompanion.nvim",
     enabled = true,
     dependencies = {
@@ -154,7 +79,7 @@ return {
           },
           intro_message = "✨ Press ? for options",
           start_in_insert_mode = true,
-          show_header_separator = true,
+          show_header_separator = false,
           ---@param adapter CodeCompanion.Adapter
           token_count = function(tokens, adapter) -- The function to display the token count
             return " " .. tokens .. " tokens"

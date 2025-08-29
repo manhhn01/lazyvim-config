@@ -1,8 +1,3 @@
--- workaround for monorepo
--- local get_root_dir = function(fname)
---   local util = require("lspconfig.util")
---   return util.root_pattern(".git")(fname) or util.root_pattern("package.json", "tsconfig.json")(fname)
--- end
 local util = require("lspconfig.util")
 
 local get_root_tsconfig = function(fname)
@@ -14,18 +9,10 @@ return {
     "neovim/nvim-lspconfig",
     version = "*",
     opts = {
-      diagnostics = {
-        virtual_text = {
-          prefix = "",
-        },
-        float = {
-          border = vim.g.transparent and "rounded" or nil,
-        },
-      },
+      diagnostics = { virtual_text = { prefix = "" } },
       inlay_hints = {
         enabled = true,
         exclude = {
-          -- "typescript",
           "typescriptreact",
           "javascript",
           "javascriptreact",

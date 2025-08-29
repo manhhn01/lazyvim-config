@@ -1,4 +1,6 @@
+---@diagnostic disable: missing-fields
 ---@diagnostic disable-next-line: unused-local
+
 local snacks = require("snacks")
 
 return {
@@ -27,11 +29,21 @@ return {
       notifier = {
         enabled = true,
         timeout = 3000,
-        style = "compact",
-      },
+        margin = { top = 0, right = 1, bottom = 1 },
 
-      terminal = {
-        shell = "fish",
+        ---@type snacks.notifier.style
+        style = function(buf, notif, ctx)
+          local title = vim.trim(notif.icon .. " " .. (notif.title or ""))
+          if title ~= "" then
+            ctx.opts.title = { { " " .. title .. " ", ctx.hl.title } }
+            ctx.opts.title_pos = "left"
+          end
+
+          ctx.opts.border = "solid"
+          ctx.opts.wo.winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder"
+
+          vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(notif.msg, "\n"))
+        end,
       },
 
       win = {
@@ -40,9 +52,7 @@ return {
 
       picker = {
         previewers = {
-          git = {
-            native = true,
-          },
+          git = { native = true },
         },
         layout = {
           preset = function(source)
@@ -53,12 +63,6 @@ return {
             return "dropdown"
           end,
         },
-      },
-
-      input = {},
-
-      scratch = {
-        zindex = 50,
       },
 
       lazygit = {
@@ -76,21 +80,11 @@ return {
         },
       },
 
-      dashboard = {
-        enabled = false,
-      },
-
-      words = {
-        enabled = true,
-      },
-
-      scroll = {
-        enabled = false,
-      },
-
-      indent = {
-        enabled = false,
-      },
+      terminal = { enabled = false },
+      scratch = { enabled = false },
+      dashboard = { enabled = false },
+      scroll = { enabled = false },
+      indent = { enabled = false },
     }
 
     return vim.tbl_deep_extend("force", opts, config)
