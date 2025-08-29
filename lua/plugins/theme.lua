@@ -15,11 +15,15 @@ return {
           ------------------------------
           -- Statusline blocks
           ------------------------------
-          StatusLineMode = { fg = colors.base, bg = colors.mauve, bold = true },
-          StatusLineFile = { fg = colors.text, bg = colors.surface0 },
-          StatusLineNormal = { fg = colors.overlay0, bg = colors.mantle },
-          StatusLineEnc = { fg = colors.overlay0, bg = colors.mantle },
-          StatusLinePos = { fg = colors.overlay0, bg = colors.mantle },
+          StatusLineMode = transparent and { fg = colors.mauve, bg = "NONE" }
+            or { fg = colors.base, bg = colors.mauve, bold = true },
+          StatusLineFile = transparent and { fg = colors.overlay1, bg = "NONE" }
+            or { fg = colors.text, bg = colors.surface0 },
+          StatusLineNormal = { fg = colors.overlay0, bg = transparent and "NONE" or colors.mantle },
+          StatusLineEnc = transparent and { fg = colors.overlay1, bg = "NONE" }
+            or { fg = colors.overlay0, bg = colors.mantle },
+          StatusLinePos = transparent and { fg = colors.overlay1, bg = "NONE" }
+            or { fg = colors.overlay0, bg = colors.mantle },
 
           ------------------------------
           -- Spell underline
@@ -106,6 +110,7 @@ return {
         },
         navic = { enabled = true, custom_bg = "NONE" },
         neotest = true,
+        neogit = true,
         neotree = true,
         noice = true,
         notify = true,
