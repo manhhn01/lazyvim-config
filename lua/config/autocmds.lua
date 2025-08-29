@@ -35,27 +35,20 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     local backupdir = vim.fn.expand("~") .. "/.vim/backup/"
 
     vim.o.backupext = extension
-    vim.o.backupdir = backupdir .. vim.fn.getcwd()
-  end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "AvanteInput",
-  callback = function()
-    vim.keymap.set({ "n", "o" }, "q", ":close<CR>", { buffer = true, silent = true })
+    vim.o.backupdir = backupdir .. vim.fn.expand("%:p:h")
   end,
 })
 
 vim.api.nvim_create_autocmd("RecordingEnter", {
   group = augroup("recording_notify_enter"),
-  callback = function(ctx)
+  callback = function()
     vim.notify("Recording macro for " .. vim.fn.reg_recording(), "info", { title = "LazyVim" })
   end,
 })
 
 vim.api.nvim_create_autocmd("RecordingLeave", {
   group = augroup("recording_notify_leave"),
-  callback = function(ctx)
+  callback = function()
     vim.notify("Stopped recording macro", "info", { title = "LazyVim" })
   end,
 })
