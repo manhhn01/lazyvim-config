@@ -1,35 +1,7 @@
 return {
   {
-    "echasnovski/mini.surround",
-    opts = {
-      mappings = {
-        add = "S",
-        delete = "ds",
-        replace = "cs",
-      },
-      n_lines = 100,
-    },
-  },
-
-  {
     "wakatime/vim-wakatime",
     event = "VeryLazy",
-  },
-
-  {
-    "dstein64/nvim-scrollview",
-    event = "BufReadPost",
-    opts = {
-      excluded_filetypes = { "NvimTree", "dashboard", "snacks_dashboard", "neoterm", "neo-tree" },
-      current_only = true,
-      winblend_gui = vim.g.transparent and 15 or 20,
-      base = "right",
-      column = 1,
-      signs_column = 0,
-      -- diagnostics_error_symbol = "x",
-      -- diagnostics_warn_symbol = "!",
-      -- diagnostics_hint_symbol = "i",
-    },
   },
 
   -- TODO: Improve the config of visual multi
@@ -123,28 +95,6 @@ return {
   },
 
   {
-    "shellRaining/hlchunk.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      chunk = {
-        enable = true,
-        chars = {
-          horizontal_line = "─",
-          vertical_line = "│",
-          left_top = "┌",
-          left_bottom = "└",
-          right_arrow = "─",
-        },
-      },
-      line_num = { enable = true },
-      indent = {
-        enable = true,
-        chars = { "┊" },
-      },
-    },
-  },
-
-  {
     "MeanderingProgrammer/render-markdown.nvim",
     ft = { "markdown", "codecompanion", "Avante" },
     opts = function(_, opts)
@@ -190,17 +140,6 @@ return {
   },
 
   {
-    "echasnovski/mini.diff",
-    config = function()
-      local diff = require("mini.diff")
-      diff.setup({
-        -- Disabled by default
-        source = diff.gen_source.none(),
-      })
-    end,
-  },
-
-  {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     keys = function()
@@ -223,7 +162,7 @@ return {
         },
       }
 
-      for i = 1, 5 do
+      for i = 1, 7 do
         table.insert(keys, {
           "<leader>" .. i,
           function()
