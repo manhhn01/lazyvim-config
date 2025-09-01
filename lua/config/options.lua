@@ -65,11 +65,11 @@ end
 
 vim.opt.statusline = table.concat({
   "%#StatusLineMode# %{v:lua.get_mode()} ",
-  "%#StatusLineFile# %f ",
+  "%#StatusLineFile# %<%f ",
   "%#StatusLineNormal# %m%r%h ",
   "%=",
   "%#StatusLineEnc#  %{&fenc==''?&enc:&fenc} ",
-  "%#StatusLinePos# %l:%c %P "
+  "%#StatusLinePos# %l:%c %P ",
 })
 ------------------------------
 -- Rust LSP
@@ -92,13 +92,13 @@ vim.g.rustaceanvim = {
 ------------------------------
 if vim.g.neovide then
   vim.o.winblend = 0
-  vim.o.guifont = "Maple Mono NF:h12"
+  vim.o.guifont = "Maple Mono NF:h13"
   vim.g.neovide_input_use_logo = true
   vim.g.neovide_input_macos_option_key_is_meta = "both"
   vim.g.neovide_window_blurred = true
-  vim.g.neovide_opacity = 0.95
-  vim.g.neovide_text_gamma = 0.8
-  vim.g.neovide_text_contrast = 0.2
+  vim.g.neovide_opacity = 0.925
+  -- vim.g.neovide_text_gamma = 0.8
+  -- vim.g.neovide_text_contrast = 0.2
   vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
