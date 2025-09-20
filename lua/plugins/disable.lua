@@ -2,7 +2,7 @@ local disabled = {
   "folke/tokyonight.nvim",
   "folke/flash.nvim",
   "zbirenbaum/copilot-cmp",
-  "echasnovski/mini.indentscope",
+  "nvim-mini/mini.indentscope",
   "L3MON4D3/LuaSnip",
   "friendly-snippets",
   "nvim-snippets",

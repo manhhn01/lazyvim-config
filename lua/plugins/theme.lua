@@ -57,7 +57,7 @@ return {
           BlinkCmpScrollBarGutter = { bg = colors.base },
           BlinkCmpScrollBarThumb = { bg = colors.surface0 },
           BlinkCmpLabelDescription = { link = "Comment" },
-          BlinkCmpMenuSelection = { bg = colors.lavender, fg = colors.crust },
+          BlinkCmpMenuSelection = { bg = colors.lavender, fg = colors.crust, bold = false },
 
           ------------------------------
           -- Others
@@ -76,7 +76,6 @@ return {
             Clear = { bg = "NONE" },
             TreesitterContextLineNumber = { bg = "NONE" },
             BlinkCmpMenu = { bg = colors.base },
-            BlinkCmpMenuSelection = { bg = colors.lavender, fg = colors.crust },
           })
         end
 

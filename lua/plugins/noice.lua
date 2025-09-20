@@ -89,6 +89,24 @@ return {
             winhighlight = { Normal = "NormalFloat", FloatBorder = "FloatBorder" },
           },
         },
+        popup = {
+          border = {
+            style = "solid",
+            padding = { 0, 1 },
+          },
+          win_options = {
+            winhighlight = { Normal = "NormalFloat", FloatBorder = "FloatBorder" },
+          },
+        },
+        confirm = {
+          border = {
+            style = "solid",
+            padding = { 0, 1 },
+          },
+          win_options = {
+            winhighlight = { Normal = "NormalFloat", FloatBorder = "FloatBorder" },
+          },
+        },
       },
       cmdline = {
         opts = {

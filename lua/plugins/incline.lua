@@ -1,7 +1,7 @@
 return {
   "b0o/incline.nvim",
   event = "BufReadPost",
-  dependencies = { { "echasnovski/mini.icons" } },
+  dependencies = { { "nvim-mini/mini.icons" } },
 
   opts = {
     highlight = {

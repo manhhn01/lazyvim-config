@@ -2,7 +2,7 @@ local mini_files = require("mini.files")
 local mini_utils = require("utils.mini_files")
 
 return {
-  "echasnovski/mini.files",
+  "nvim-mini/mini.files",
   opts = {
     windows = {
       preview = true,
