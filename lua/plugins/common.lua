@@ -105,14 +105,6 @@ return {
   },
 
   {
-    "nvzone/typr",
-    dependencies = {
-      "nvzone/volt",
-    },
-    opts = {},
-    cmd = { "Typr", "TyprStats" },
-  },
-  {
     "mvllow/modes.nvim",
     lazy = false,
     opts = {
