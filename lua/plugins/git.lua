@@ -106,4 +106,10 @@ return {
       { "<leader>gn", "<cmd>Neogit<cr>", desc = "Neogit" },
     },
   },
+
+  {
+    "esmuellert/vscode-diff.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    cmd = "CodeDiff",
+  },
 }
