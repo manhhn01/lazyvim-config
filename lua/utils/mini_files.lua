@@ -41,4 +41,14 @@ M.filter_hide = function(fs_entry)
   return not vim.startswith(fs_entry.name, ".")
 end
 
+M.open_with_system = function()
+  local entry = mini_files.get_fs_entry()
+
+  if entry == nil then
+    return
+  end
+
+  vim.ui.open(entry.path)
+end
+
 return M

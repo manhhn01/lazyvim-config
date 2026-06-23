@@ -49,6 +49,7 @@ return {
         mini_utils.map_split(buf_id, "<C-v>", "belowright vertical", true)
 
         vim.keymap.set("n", "g.", toggle_dotfiles, { buffer = buf_id })
+        vim.keymap.set("n", "gx", mini_utils.open_with_system, { buffer = buf_id, desc = "Open with system app" })
       end,
     })
 
