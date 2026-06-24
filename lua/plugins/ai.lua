@@ -2,7 +2,7 @@ return {
   {
     "Exafunction/codeium.nvim",
     commit = "2b10c17c46e43154ebd058f6b3d3842dd8fa7cab",
-    enabled = true,
+    enabled = false,
     cmd = "Codeium",
     event = "BufReadPost",
     opts = {},

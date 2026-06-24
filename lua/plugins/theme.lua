@@ -1,9 +1,14 @@
 return {
   {
     "catppuccin/nvim",
-    lazy = true,
+    lazy = false,
     name = "catppuccin",
+    config = function(_, opts)
+      require("catppuccin").setup(opts)
+      vim.cmd.colorscheme("catppuccin")
+    end,
     opts = {
+      compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
       transparent_background = vim.g.transparent or false,
       float = {
         transparent = false,
