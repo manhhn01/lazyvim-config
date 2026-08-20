@@ -22,6 +22,20 @@ return {
       end,
       desc = "Icons",
     },
+    {
+      "<leader>fe",
+      function()
+        Snacks.explorer({ cwd = LazyVim.root() })
+      end,
+      desc = "Explorer Snacks (root dir)",
+    },
+    {
+      "<leader>fE",
+      function()
+        Snacks.explorer()
+      end,
+      desc = "Explorer Snacks (cwd)",
+    },
   },
   opts = function(_, opts)
     ---@type snacks.Config
@@ -51,6 +65,13 @@ return {
       },
 
       picker = {
+        win = {
+          input = {
+            wo = {
+              virtualedit = "all",
+            },
+          },
+        },
         previewers = {
           git = { native = true },
         },
